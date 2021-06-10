@@ -1,0 +1,50 @@
+body {
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+.container {
+	margin-top: 30px;
+}
+
+.darkmode {
+	color: #fff;
+	background-color: #212121;
+}
+
+.lightmode {
+	background-color: #fff;
+	color: #212121;
+}
+
+
+.dark-mode-toggle {
+	width: 32px;
+	height: 32px;
+	border: none;
+	background: transparent;
+	border: 2px solid white;
+	border-radius: 10px;
+}
+
+nav {
+	background-color: #212121;
+	box-shadow: 1px 1px 10px black;
+	padding: 20px;
+}
+
+.landing {
+	height: 100vh;
+}
+
+.landing-heading {
+	text-align: center;
+	font-weight: 700;
+}
+
+.bottom {
+	text-align: center;
+}
+
+.heading {
+	font-weight: 700;
+}

@@ -4,4 +4,4 @@ wtforms==2.2.1
 
 flask==2.0.1
 
-flask_sqlalchemy==3.7.4.3
+flask_sqlalchemy==3.4.0

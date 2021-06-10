@@ -1,11 +1,7 @@
-from re import LOCALE
+from main.models import User, Post
 from flask import request, render_template, redirect, url_for, flash
-from main import app
 from main.forms import RegistrationForm, LoginForm
-# from main.models import
-from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy(app=app)
+from main import app
 
 @app.route("/")
 def home():

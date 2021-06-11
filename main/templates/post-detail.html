@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}
+{{ post.title }} - Post - DevExplorer
+{% endblock title %}
+
+{%  block content %}
+    <div class="jumbotron post container">
+        <h2 style="font-weight: 700;">{{ post.title }}</h2>
+        <small class="text-muted">{{ post.author.username }}</small>
+
+        <p>{{ post.content }}</p>
+
+        <small class="text-muted">{{ post.date_posted.replace(microsecond = 0) }}</small>
+    </div>
+{% endblock content %}

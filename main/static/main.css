@@ -57,6 +57,8 @@ nav {
 	margin: 0px;
 	box-shadow: 0px 1px 20px black;
 	border-radius: 25px;
+	margin-bottom: 30px;
+	border: 1px solid white;
 }
 
 .card-text{
@@ -67,3 +69,27 @@ nav {
 	-webkit-box-orient: vertical;
 }
 
+.post {
+	background-color: #212121;
+	color: white;
+	border-radius: 20px;
+	padding: 60px;
+	box-shadow: 1px 2px 25px black;
+	border: 3px solid white;
+}
+
+@keyframes bounce{
+    from { transform: translate3d(0, 0, 0);}
+    to { transform: translate3d(0, 30px, 0);}
+}
+
+.arrow {
+  position: absolute;
+  bottom: 90px;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  animation: bounce 0.5s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}

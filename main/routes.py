@@ -84,3 +84,9 @@ def new_post():
 def list_posts():
 	posts = Post.query.all()
 	return render_template("posts.html", posts=posts)
+
+# Post Detail View
+@app.route("/post/<int:pk>")
+def post(pk):
+	post = Post.query.get_or_404(pk)
+	return render_template('post-detail.html', post=post)

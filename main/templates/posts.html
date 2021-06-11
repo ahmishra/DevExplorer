@@ -6,19 +6,27 @@ Blogs - DevExplorer
 {% block content %}
 <div class="container">
     <div class="row">
-        {% for i in posts %}
-            <div class="col-4">
-                <div class="card blogs">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ i.title }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ i.author.username }}</h6>
-                        <p class="card-text">{{ i.content }}</p>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ i.date_posted.replace(microsecond = 0) }}</h6>
-                
+        {% if posts != [] %}
+            {% for i in posts %}
+                <div class="col-4">
+                    <div class="card blogs">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ url_for('post', pk=i.id) }}" style="color: white; font-weight: bolder; text-decoration: none;">
+                                    {{ i.title }}
+                                </a>
+                            </h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ i.author.username }}</h6>
+                            <p class="card-text">{{ i.content }}</p>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ i.date_posted.replace(microsecond = 0) }}</h6>
+                    
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        {% else %}
+            <h1 style="font-weight: bolder; text-align: center;">No Posts Yet! Be the first to post one!</h1>
+        {% endif %}
     </div>
 </div>
 {% endblock content %}

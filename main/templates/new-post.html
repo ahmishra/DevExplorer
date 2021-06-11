@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}
+New Blog - DevExplorer
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+    
+        <!-- NEW POST FORM -->
+        <form method="POST" action="">
+            <!-- CSRF TOKEN -->
+            {{ form.hidden_tag() }}
+    
+            <!-- FORM LAYOUT -->
+            <fieldset class="form-group">
+    
+                <!-- TITLE -->
+                <div class="form-group">
+                    {{ form.title.label(class="form-control-label") }}
+                    {% if form.title.errors %}
+                    {{ form.title(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.title.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.title(class="form-control form-control-lg") }}
+                    {% endif %}
+    
+                </div>
+    
+                <br>
+    
+                <!-- CONTEN -->
+                <div class="form-group">
+                    {{ form.content.label(class="form-control-label") }}
+                    {% if form.content.errors %}
+                    {{ form.content(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.content.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.content(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+    
+                <br>
+            </fieldset>
+    
+            <br>
+    
+            <!-- SUBMIT -->
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}

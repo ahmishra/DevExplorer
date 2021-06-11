@@ -1,4 +1,6 @@
 from datetime import datetime
+
+from sqlalchemy.orm import backref
 from main import db, login_manager
 from flask_login import UserMixin
 
@@ -28,4 +30,4 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
 
     def __repr__(self):
-        return f"User({self.id}, {self.title}, {self.date_posted})"
+        return f"Post({self.id}, {self.title}, {self.date_posted})"

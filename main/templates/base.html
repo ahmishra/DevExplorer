@@ -42,9 +42,6 @@
 					<li class="nav-item">
 						<a class="nav-link" href="#">DevNews</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Blog</a>
-					</li>
 					{% if current_user.is_authenticated != True %}
 					<li class="nav-item">
 						<a class="nav-link" href="{{ url_for('register') }}">Register</a>
@@ -55,8 +52,11 @@
 					{% else %}
 					<li class="nav-item">
 						<a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
-					</li><li class="nav-item">
-						<a class="nav-link" href="{{ url_for('account') }}">Account</a>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('new_post') }}">New Blog</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('list_posts') }}">Blogs</a>
 					</li>
 					{% endif %}
 				</ul>

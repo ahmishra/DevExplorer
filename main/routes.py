@@ -1,7 +1,10 @@
-from flask_login.utils import login_user, current_user, logout_user
+from enum import auto
+from operator import pos
+from flask_login.utils import login_required, login_user, current_user, logout_user
+from main import forms
 from main.models import User, Post
 from flask import render_template, redirect, url_for, flash
-from main.forms import RegistrationForm, LoginForm
+from main.forms import RegistrationForm, LoginForm, NewPostForm
 from main import app, bcrypt, db
 
 
@@ -60,3 +63,24 @@ def logout():
 	logout_user()
 	return redirect(url_for('home'))
 
+
+# New Post Page
+@app.route("/posts/new", methods=["POST", "GET"])
+@login_required
+def new_post():
+	form = NewPostForm()
+	if form.validate_on_submit():
+		post = Post(title=form.title.data, content=form.content.data, author=current_user)
+		db.session.add(post)
+		db.session.commit()
+		flash("Post Was Created", "info")
+		return redirect(url_for('home'))
+	
+	return render_template("new-post.html", form=form)
+
+# List Posts Page
+@app.route("/posts")
+@login_required
+def list_posts():
+	posts = Post.query.all()
+	return render_template("posts.html", posts=posts)

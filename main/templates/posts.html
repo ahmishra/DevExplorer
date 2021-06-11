@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}
+Blogs - DevExplorer
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for i in posts %}
+            <div class="col-4">
+                <div class="card blogs">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i.title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ i.author.username }}</h6>
+                        <p class="card-text">{{ i.content }}</p>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ i.date_posted.replace(microsecond = 0) }}</h6>
+                
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

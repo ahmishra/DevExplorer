@@ -6,10 +6,14 @@ Register - DevExplorer
 
 {% block content %}
 <div class="container">
+    
+    <!-- REGISTER FORM -->
     <form method="POST" action="">
+        <!-- CSRF TOKEN -->
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
 
+            <!-- USERNAME -->
             <div class="form-group">
                 {{ form.username.label(class="form-control-label") }}
                 {% if form.username.errors %}
@@ -27,6 +31,7 @@ Register - DevExplorer
 
             <br>
 
+            <!-- PASSWORD -->
             <div class="form-group">
                 {{ form.password.label(class="form-control-label") }}
                 {% if form.password.errors %}
@@ -43,6 +48,7 @@ Register - DevExplorer
 
             <br>
 
+            <!-- PASSWORD CONFIRM -->
             <div class="form-group">
                 {{ form.password_confirm.label(class="form-control-label") }}
                 {% if form.password_confirm.errors %}
@@ -60,12 +66,14 @@ Register - DevExplorer
 
         <br>
 
+        <!-- SUBMIT BTN -->
         <div class="form-group">
             {{ form.submit(class="btn btn-outline-info") }}
         </div>
 
         <br><br>
 
+        <!-- LOGIN REDIRECT -->
         <p style="text-align: left;"><small class="text-mute">Already Have An Account? <a href="{{ url_for('login') }}"
                     style="color: white;">Login</a></small></p>
 

@@ -6,10 +6,16 @@ Login - DevExplorer
 
 {% block content %}
 <div class="container">
+
+    <!-- LOGIN FORM -->
     <form method="POST" action="">
+        <!-- CSRF TOKEN -->
         {{ form.hidden_tag() }}
+
+        <!-- FORM LAYOUT -->
         <fieldset class="form-group">
 
+            <!-- USERNAME -->
             <div class="form-group">
                 {{ form.username.label(class="form-control-label") }}
                 {% if form.username.errors %}
@@ -27,6 +33,7 @@ Login - DevExplorer
 
             <br>
 
+            <!-- PASSWORD -->
             <div class="form-group">
                 {{ form.password.label(class="form-control-label") }}
                 {% if form.password.errors %}
@@ -42,6 +49,8 @@ Login - DevExplorer
             </div>
 
             <br>
+
+            <!-- REMEMBER -->
             <div class="form-check">
                 {{ form.remember_me(class="form-check-input") }}
                 {{ form.remember_me.label(class="form-check-label") }}
@@ -50,8 +59,14 @@ Login - DevExplorer
 
         <br>
 
+        <!-- SUBMIT -->
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+
         <br><br>
 
+        <!-- REGISTER REDIRECT -->
         <p style="text-align: left;"><small class="text-mute">Not registered yet? <a href="{{ url_for('register') }}"
                     style="color: white;">Register</a></small></p>
 

@@ -1,8 +1,10 @@
 from flask_wtf import FlaskForm
 from wtforms.fields.core import BooleanField, StringField
 from wtforms.fields.simple import PasswordField, SubmitField
-from wtforms.validators import DataRequired, EqualTo, Length
+from wtforms.validators import DataRequired, EqualTo, Length, ValidationError
+from main.models import User
 
+# Form To Make The User Registered
 class RegistrationForm(FlaskForm):
     username = StringField("Username", validators=[DataRequired(), Length(min=3, max=20)])
     password = PasswordField("Password", validators=[
@@ -12,7 +14,13 @@ class RegistrationForm(FlaskForm):
 
     submit = SubmitField('Register')
 
+    # Custom Validator
+    def validate_username(self, username):
+        user = User.query.filter_by(username=username.data).first()
+        if user:
+            raise ValidationError("That username is taken, please choose another one.")
 
+# Login Form
 class LoginForm(FlaskForm):
     username = StringField("Username", validators=[
                            DataRequired(), Length(min=3, max=20)])

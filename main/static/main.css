@@ -22,8 +22,8 @@ body {
 	height: 32px;
 	border: none;
 	background: transparent;
-	border: 2px solid white;
 	border-radius: 10px;
+	border: 1px solid white;
 }
 
 nav {

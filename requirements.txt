@@ -2,3 +2,4 @@ flask_wtf==0.14.3
 wtforms==2.2.1
 flask==2.0.1
 flask_sqlalchemy==2.4.4
+flask_bcrypt==0.7.1

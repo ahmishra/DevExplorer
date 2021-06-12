@@ -73,8 +73,8 @@ def new_post():
 		post = Post(title=form.title.data, content=form.content.data, author=current_user)
 		db.session.add(post)
 		db.session.commit()
-		flash("Post Was Created", "info")
-		return redirect(url_for('home'))
+		flash(f"{post.title} was created!", "info")
+		return redirect(url_for('post', pk=post.id))
 	
 	return render_template("new-post.html", form=form)
 

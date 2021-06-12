@@ -4,12 +4,15 @@
 {% endblock title %}
 
 {%  block content %}
-    <div class="jumbotron post container">
+    <div class="jumbotron post container" style="width: 75.5rem;">
         <h2 style="font-weight: 700;">{{ post.title }}</h2>
         <small class="text-muted">{{ post.author.username }}</small>
 
-        <p>{{ post.content }}</p>
+        <p>{{ post.content|markdown }}</p>
 
         <small class="text-muted">{{ post.date_posted.replace(microsecond = 0) }}</small>
     </div>
+
+    <br><br>
+
 {% endblock content %}

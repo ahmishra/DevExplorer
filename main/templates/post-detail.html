@@ -5,6 +5,24 @@
 
 {%  block content %}
     <div class="jumbotron post container" style="width: 75.5rem;">
+        <a href="{{ url_for('list_posts') }}">
+            <i class="fas fa-caret-left fa-1x btn btn-outline-info btn-lg"></i>
+        </a>
+
+
+        {% if post.author == current_user %}
+            <a href="{{ url_for('post_update', pk=post.id) }}" style="float: right;">
+                <i class="fas fa-pencil-alt fa-1x btn btn-outline-warning btn-lg"></i>
+            </a>
+
+            <a href="{{ url_for('post_update', pk=post.id) }}" style="float: right; margin-right: 10px;">
+                <i class="far fa-trash-alt fa-1x btn btn-outline-danger btn-lg"></i>
+            </a>
+        {% endif %}
+
+
+        <br><br>
+
         <h2 style="font-weight: 700;">{{ post.title }}</h2>
         <small class="text-muted">{{ post.author.username }}</small>
 

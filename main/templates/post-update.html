@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block title %}
-New Blog - DevExplorer
+Update Blog - {{ form.title.data }} - DevExplorer
 {% endblock title %}
 
 {% block content %}
 <div class="container">
 
-    <!-- NEW POST FORM -->
+    <!-- UPDATE POST FORM -->
     <form method="POST" action="">
         <!-- CSRF TOKEN -->
         {{ form.hidden_tag() }}
@@ -32,7 +32,7 @@ New Blog - DevExplorer
 
             <br>
 
-            <!-- CONTEN -->
+            <!-- CONTENT -->
             <div class="form-group">
                 {{ form.content.label(class="form-control-label") }}
                 {% if form.content.errors %}

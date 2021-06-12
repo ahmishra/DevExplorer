@@ -106,3 +106,17 @@ nav {
   animation-direction: alternate;
   animation-iteration-count: infinite;
 }
+
+textarea {
+  width: 300px;
+  height: 500px;
+}
+
+#title {
+	font-weight: bolder;
+	padding: 20px;
+}
+
+#content {
+	padding: 30px;
+}

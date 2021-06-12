@@ -1,9 +1,7 @@
-from enum import auto
-from operator import pos
 from flask_login.utils import login_required, login_user, current_user, logout_user
-from main import forms
+from werkzeug.wrappers import request
 from main.models import User, Post
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, abort, request
 from main.forms import RegistrationForm, LoginForm, NewPostForm
 from main import app, bcrypt, db
 
@@ -78,15 +76,39 @@ def new_post():
 	
 	return render_template("new-post.html", form=form)
 
+
 # List Posts Page
 @app.route("/posts")
-@login_required
 def list_posts():
 	posts = Post.query.all()
 	return render_template("posts.html", posts=posts)
 
+
 # Post Detail View
 @app.route("/post/<int:pk>")
-def post(pk):
+def post_detail(pk):
 	post = Post.query.get_or_404(pk)
 	return render_template('post-detail.html', post=post)
+
+
+# Post Update View
+@app.route("/post/<int:pk>/update", methods=["POST", "GET"])
+@login_required
+def post_update(pk):
+	post = Post.query.get_or_404(pk)
+	if post.author != current_user:
+		abort(403)
+
+	form = NewPostForm()
+	if form.validate_on_submit():
+		post.title = form.title.data
+		post.content = form.content.data
+		db.session.commit()
+		flash("Your Post, Has Been Updated!", "success")
+		return redirect(url_for('post_detail', pk=post.id))
+
+	elif request.method == "GET":
+		form.title.data = post.title
+		form.content.data = post.content
+
+	return render_template('post-update.html', form=form)

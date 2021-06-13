@@ -18,18 +18,43 @@ body {
 
 
 .dark-mode-toggle {
-	width: 32px;
-	height: 32px;
+	border-radius: 0px;
 	border: none;
-	background: transparent;
-	border-radius: 10px;
-	border: 1px solid white;
+	outline: none;
+	padding: 8px;
+}
+
+.rainbow-button {
+  background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 80%, #00C0FF 100%);
+  border-radius:5px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-transform:uppercase;
+  font-weight:bolder;
+}
+.rainbow-button:after {
+  content:attr(alt);
+  background-color:#191919;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.rainbow-button:hover {
+  animation:slidebg 10s linear infinite;
+}
+
+@keyframes slidebg {
+  to {
+    background-position:20vw;
+  }
 }
 
 nav {
 	background-color: #212121;
 	box-shadow: 1px 1px 10px black;
-	padding: 20px;
+	padding: 10px;
+	height: 80px;
 }
 
 .landing {

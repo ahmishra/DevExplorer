@@ -62,27 +62,28 @@ def logout():
 	return redirect(url_for('home'))
 
 
+# List Posts Page
+@app.route("/posts")
+def list_posts():
+	page = request.args.get('page', 1, type=int)
+	posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=6)
+	return render_template("posts.html", posts=posts)
+
+
 # New Post Page
 @app.route("/posts/new", methods=["POST", "GET"])
 @login_required
 def new_post():
 	form = NewPostForm()
 	if form.validate_on_submit():
-		post = Post(title=form.title.data, content=form.content.data, author=current_user)
+		post = Post(title=form.title.data,
+		            content=form.content.data, author=current_user)
 		db.session.add(post)
 		db.session.commit()
 		flash(f"{post.title} was created!", "info")
-		return redirect(url_for('post', pk=post.id))
-	
+		return redirect(url_for('post_detail', pk=post.id))
+
 	return render_template("new-post.html", form=form)
-
-
-# List Posts Page
-@app.route("/posts")
-def list_posts():
-	posts = Post.query.all()
-	return render_template("posts.html", posts=posts)
-
 
 # Post Detail View
 @app.route("/post/<int:pk>")
@@ -112,3 +113,18 @@ def post_update(pk):
 		form.content.data = post.content
 
 	return render_template('post-update.html', form=form)
+
+
+# Delete Posts
+@app.route("/post/<int:pk>/delete", methods=["POST", "GET"])
+@login_required
+def post_delete(pk):
+	post = Post.query.get_or_404(pk)
+	if post.author != current_user:
+		abort(403)
+
+	db.session.delete(post)
+	db.session.commit()
+	flash("Your Post, Has Been Deleted!", "success")
+	return redirect(url_for('list_posts'))
+

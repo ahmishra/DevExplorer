@@ -7,7 +7,7 @@ Blogs - DevExplorer
 <div class="container">
     <div class="row">
         {% if posts != [] %}
-            {% for i in posts %}
+            {% for i in posts.items %}
                 <a href="{{ url_for('post_detail', pk=i.id) }}" class="col-4" style="text-decoration: none; color: white;">
                     <div class="col-4">
                         <div class="card blogs">
@@ -28,6 +28,20 @@ Blogs - DevExplorer
             <h1 style="font-weight: bolder; text-align: center;">No Posts Yet! Be the first to post one!</h1>
         {% endif %}
     </div>
+
+    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+        {% if page_num %}
+            {% if posts.page == page_num %}
+                <a class="btn btn-info" style="margin: 5px;" href="{{ url_for('list_posts', page=page_num) }}">{{ page_num }}</a>
+            {% else %}
+                <a class="btn btn-outline-info" style="margin: 5px;" href="{{ url_for('list_posts', page=page_num) }}">{{ page_num }}</a>
+            {% endif %}
+
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+
 </div>
 
 <br><br>

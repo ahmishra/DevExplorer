@@ -74,7 +74,7 @@ nav {
 	font-weight: 700;
 }
 
-.blogs {
+.cards {
 	background-color: #212121;
 	color: white;
 	padding: 30px;
@@ -86,7 +86,7 @@ nav {
 	border: 1px solid white;
 }
 
-.blogs:hover {
+.cards:hover {
 	box-shadow: 0px 0px 50px #000000;
     z-index: 2;
     -webkit-transition: all 200ms ease-in;

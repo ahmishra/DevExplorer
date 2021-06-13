@@ -3,7 +3,8 @@ from werkzeug.wrappers import request
 from main.models import User, Post
 from flask import render_template, redirect, url_for, flash, abort, request
 from main.forms import RegistrationForm, LoginForm, NewPostForm
-from main import app, bcrypt, db
+from main import app, bcrypt, db, ScrapeNews
+import xlrd
 
 
 # Home Page
@@ -128,3 +129,12 @@ def post_delete(pk):
 	flash("Your Post, Has Been Deleted!", "success")
 	return redirect(url_for('list_posts'))
 
+
+# DevNews
+@app.route("/devnews")
+def devnews():
+	ScrapeNews().scrape()
+	excel_file = ("main\\TechCrunch_latest_news.xlsx")
+	wb = xlrd.open_workbook(excel_file)
+	sheet = wb.sheet_by_index(0)
+	return render_template("devnews.html", sheet=sheet, cols=[i for i in range(sheet.nrows)])

@@ -1,10 +1,11 @@
 from flask_login.utils import login_required, login_user, current_user, logout_user
 from werkzeug.wrappers import request
 from main.models import User, Post
-from flask import render_template, redirect, url_for, flash, abort, request
+from flask import render_template, redirect, url_for, flash, abort, request, send_from_directory
 from main.forms import RegistrationForm, LoginForm, NewPostForm
 from main import app, bcrypt, db, ScrapeNews
 import xlrd
+import os
 
 
 # Home Page
@@ -140,3 +141,4 @@ def devnews():
 	wb = xlrd.open_workbook(excel_file)
 	sheet = wb.sheet_by_index(0)
 	return render_template("devnews.html", sheet=sheet, cols=[i for i in range(sheet.nrows)])
+

@@ -4,7 +4,7 @@
 {% endblock title %}
 
 {%  block content %}
-    <div class="jumbotron post container" style="width: 75.5rem;">
+    <div class="container" style="width: 100%; margin-top: 30px; object-fit: cover;">
         <a href="{{ url_for('list_posts') }}">
             <i class="fas fa-caret-left fa-1x btn btn-outline-info btn-lg"></i>
         </a>
@@ -26,7 +26,6 @@
         <small class="text-muted">{{ post.author.username }}</small>
 
         <p>{{ post.content|markdown }}</p>
-
         <small class="text-muted">{{ post.date_posted.replace(microsecond = 0) }}</small>
     </div>
 

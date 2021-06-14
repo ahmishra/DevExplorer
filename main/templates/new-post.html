@@ -32,7 +32,24 @@ New Blog - DevExplorer
 
             <br>
 
-            <!-- CONTEN -->
+            <!-- THUMBNAIL -->
+            <div class="form-group">
+                {{ form.thumbnail.label(class="form-control-label") }}
+                {% if form.thumbnail.errors %}
+                {{ form.thumbnail(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.thumbnail.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.thumbnail(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            
+            <br>
+
+            <!-- CONTENT -->
             <div class="form-group">
                 {{ form.content.label(class="form-control-label") }}
                 {% if form.content.errors %}
@@ -48,6 +65,7 @@ New Blog - DevExplorer
             </div>
 
             <br>
+
         </fieldset>
 
         <br>

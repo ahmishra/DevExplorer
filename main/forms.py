@@ -33,8 +33,8 @@ class LoginForm(FlaskForm):
 
 # New Post Form
 class NewPostForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired(), Length(10)])
-    content = TextAreaField('Content', validators=[DataRequired(), Length(25)])
+    title = StringField('Title', validators=[DataRequired(), Length(3)])
+    content = TextAreaField('Content', validators=[DataRequired(), Length(3)])
+    thumbnail = StringField('Thumbnail(Image URL)')
     submit = SubmitField('Post')
-
 

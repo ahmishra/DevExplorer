@@ -78,7 +78,7 @@ def new_post():
 	form = NewPostForm()
 	if form.validate_on_submit():
 		post = Post(title=form.title.data,
-		            content=form.content.data, author=current_user)
+		            content=form.content.data, thumbnail=form.thumbnail.data, author=current_user)
 		db.session.add(post)
 		db.session.commit()
 		flash(f"{post.title} was created!", "info")
@@ -105,6 +105,7 @@ def post_update(pk):
 	if form.validate_on_submit():
 		post.title = form.title.data
 		post.content = form.content.data
+		post.thumbnail = form.thumbnail.data
 		db.session.commit()
 		flash("Your Post, Has Been Updated!", "success")
 		return redirect(url_for('post_detail', pk=post.id))
@@ -112,6 +113,7 @@ def post_update(pk):
 	elif request.method == "GET":
 		form.title.data = post.title
 		form.content.data = post.content
+		form.thumbnail.data = post.thumbnail
 
 	return render_template('post-update.html', form=form)
 

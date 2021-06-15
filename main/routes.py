@@ -145,3 +145,7 @@ def devnews():
 	sheet = wb.sheet_by_index(0)
 	return render_template("devnews.html", sheet=sheet, cols=[i for i in range(sheet.nrows)])
 
+# Credits ;)
+@app.route("/credits")
+def credits():
+	return render_template("credits.html")

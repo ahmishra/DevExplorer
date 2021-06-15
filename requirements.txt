@@ -9,3 +9,4 @@ beautifulsoup4==4.9.3
 pandas==1.2.0
 xlsxwriter==1.4.3
 xlrd==1.2.0
+requests==2.4.0

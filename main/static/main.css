@@ -27,11 +27,12 @@ body {
 .rainbow-button {
   background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 80%, #00C0FF 100%);
   border-radius:5px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-transform:uppercase;
+  /* display:flex; */
+  /* align-items:center; */
+  /* justify-content:center; */
+  /* text-transform:uppercase; */
   font-weight:bolder;
+  color: white;
 }
 .rainbow-button:after {
   content:attr(alt);

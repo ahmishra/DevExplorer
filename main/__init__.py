@@ -1,10 +1,12 @@
-import bcrypt
 # Other Imports
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flaskext.markdown import Markdown
+
+# Google Map
+from flask_googlemaps import GoogleMaps
 
 # Tech Crunch Scraper
 
@@ -73,6 +75,7 @@ db = SQLAlchemy(app=app)
 bcrypt = Bcrypt(app=app)
 login_manager = LoginManager(app=app)
 md = Markdown(app)
+gmap = GoogleMaps(app, key="AIzaSyCozLmTJ5vhnHo3kBHG3UXuEHofSm84Xis")
 
 # Importing Routes
 from main import routes

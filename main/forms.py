@@ -1,8 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import validators
-from wtforms.fields.core import BooleanField, StringField
+from wtforms.fields.core import BooleanField, FloatField, StringField
 from wtforms.fields.simple import PasswordField, SubmitField, TextAreaField
-from wtforms.validators import DataRequired, EqualTo, Length, ValidationError
+from wtforms.validators import DataRequired, EqualTo, InputRequired, Length, ValidationError
 from main.models import User
 
 # Form To Make The User Registered
@@ -38,3 +37,10 @@ class NewPostForm(FlaskForm):
     thumbnail = StringField('Thumbnail(Image URL)', validators=[DataRequired(), Length(3)])
     submit = SubmitField('Post')
 
+
+# Lat, Long
+class GetFieldForm(FlaskForm):
+    field_name = StringField('Designation')
+    field_latitude = FloatField('Latitude', default=-30, validators=[InputRequired()], description='48.182601')
+    field_longitude = FloatField('Longitude', default=150, validators=[InputRequired()], description='11.304939')
+    submit = SubmitField('Search')

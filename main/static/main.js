@@ -28,5 +28,3 @@ darkModeToggle.addEventListener('click', () => {
     }
 });
 // END
-
-

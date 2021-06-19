@@ -1,3 +1,3 @@
 # DevExplorer
 
-A simple easy to use platform for developers, where they can get their news feed, explore around the map, and post blogs!
+A easy, simple to use platform for developers/explorers to get their daily news feed, explore the world with our maps and post blogs to make your own little news!

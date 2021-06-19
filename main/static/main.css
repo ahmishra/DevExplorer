@@ -1,22 +1,30 @@
+/* Basic Body Styling */
 body {
 	font-family: 'Source Sans Pro', sans-serif;
 }
 
+
+/* Container Styles(Bootstrap Class) */
 .container {
 	margin-top: 30px;
 }
 
+
+/* Class For Toggling/Turning of "Light Mode" */
 .darkmode {
 	color: #fff;
 	background-color: #212121;
 }
 
+
+/* Class For Toggling/Turning of "Dark Mode" */
 .lightmode {
 	background-color: #fff;
 	color: #212121;
 }
 
 
+/* Dark/Light Mode Toggle BUTTON */
 .dark-mode-toggle {
 	border-radius: 0px;
 	border: none;
@@ -24,16 +32,17 @@ body {
 	padding: 8px;
 }
 
+
+/* RAINBOW STYLING, Style, When put added to a button/anchor applies a animated rainbow effect to it */
 .rainbow-button {
   background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 80%, #00C0FF 100%);
   border-radius:5px;
-  /* display:flex; */
-  /* align-items:center; */
-  /* justify-content:center; */
-  /* text-transform:uppercase; */
   font-weight:bolder;
   color: white;
 }
+
+
+/* Basic "AFTER" styling */
 .rainbow-button:after {
   content:attr(alt);
   background-color:#191919;
@@ -41,40 +50,34 @@ body {
   align-items:center;
   justify-content:center;
 }
+
+
+/* Applying animation on hover */
 .rainbow-button:hover {
-  animation:slidebg 10s linear infinite;
+  animation:rainbow-animation 10s linear infinite;
 }
 
-@keyframes slidebg {
-  to {
-    background-position:20vw;
-  }
-}
 
-nav {
-	background-color: #212121;
-	box-shadow: 1px 1px 10px black;
-	padding: 10px;
-	height: 80px;
-}
-
+/* Styling the "Landing" page */
 .landing {
 	height: 100vh;
 }
 
+
+/* Land Heading Style */
 .landing-heading {
 	text-align: center;
 	font-weight: 700;
 }
 
-.bottom {
-	text-align: center;
-}
 
+/* Styles for a heading */
 .heading {
 	font-weight: 700;
 }
 
+
+/* Further styling to cards such as softer, shadows(Bootstrap Class) */
 .cards {
 	background-color: #fff;
 	color: black;
@@ -87,6 +90,8 @@ nav {
 	border: 1px solid white;
 }
 
+
+/* Hover effect to "Enchanced Cards" */
 .cards:hover {
 	box-shadow: 0px 0px 50px #000000;
     z-index: 2;
@@ -100,6 +105,8 @@ nav {
     transform: scale(1.2);
 }
 
+
+/* Preventing overflow of content inside of the cards */
 .card-text{
 	overflow: hidden;
 	height:10rem;
@@ -108,6 +115,8 @@ nav {
 	-webkit-box-orient: vertical;
 }
 
+
+/* Styling for post cards(extends from "cards" styling) */
 .post {
 	background-color: #212121;
 	color: white;
@@ -117,11 +126,8 @@ nav {
 	border: 3px solid white;
 }
 
-@keyframes bounce{
-    from { transform: translate3d(0, 0, 0);}
-    to { transform: translate3d(0, 30px, 0);}
-}
 
+/* Arrow(bouncing) to show a user that content at the bottom exists */
 .arrow {
   position: absolute;
   bottom: 90px;
@@ -133,27 +139,8 @@ nav {
   animation-iteration-count: infinite;
 }
 
-textarea {
-  width: 300px;
-  height: 500px;
-}
 
-#title {
-	font-weight: bolder;
-	padding: 20px;
-}
-
-#content {
-	padding: 30px;
-}
-
-iframe {
-	width: 1100px;
-	height: 900px;
-	border-radius: 10px;
-	margin-top: 20px;
-}
-
+/* Styling for "credits.html"'s jumbotron */
 .credits {
 	background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
 	background-size: 1800% 1800%;
@@ -169,23 +156,92 @@ iframe {
 }
 
 
+/* Input Box Styling For Latitude and Longitude */
+.latlong {
+	width: 100%;
+	border: none;
+	outline: none;
+	padding: 15px;
+	margin-bottom: 20px;
+	border-bottom: crimson 1px solid;
+}
+
+
+/* Bounce Animation */
+@keyframes bounce{
+    from { transform: translate3d(0, 0, 0);}
+    to { transform: translate3d(0, 30px, 0);}
+}
+
+/* Animation for credits */
 @-webkit-keyframes rainbow {
     0%{background-position:0% 82%}
     50%{background-position:100% 19%}
     100%{background-position:0% 82%}
 }
+
+
 @-moz-keyframes rainbow {
     0%{background-position:0% 82%}
     50%{background-position:100% 19%}
     100%{background-position:0% 82%}
 }
+
+
 @-o-keyframes rainbow {
     0%{background-position:0% 82%}
     50%{background-position:100% 19%}
     100%{background-position:0% 82%}
 }
+
+
 @keyframes rainbow { 
     0%{background-position:0% 82%}
     50%{background-position:100% 19%}
     100%{background-position:0% 82%}
 }
+
+
+/* Rainbow button animation */
+@keyframes rainbow-animation {
+  to {
+    background-position:20vw;
+  }
+}
+
+
+/* CSS Default elements Styles */
+textarea {
+  width: 300px;
+  height: 500px;
+}
+
+
+iframe {
+	width: 1100px;
+	height: 900px;
+	border-radius: 10px;
+	margin-top: 20px;
+}
+
+
+nav {
+	background-color: #212121;
+	box-shadow: 1px 1px 10px black;
+	padding: 10px;
+	height: 80px;
+}
+
+
+/* Styling for title and content inside of a post */
+#title {
+	font-weight: bolder;
+	padding: 20px;
+}
+
+#content {
+	padding: 30px;
+}
+
+
+/* END */

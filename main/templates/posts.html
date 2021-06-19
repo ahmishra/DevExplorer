@@ -6,8 +6,10 @@ Blogs - DevExplorer
 {% block content %}
 <div class="container">
     <div class="row">
+        <!-- Displaying the posts, if the database if empty telling the user to post a post -->
         {% if posts.items != [] %}
             {% for i in posts.items %}
+                <!-- Displaying the posts if exists -->
                 <a href="{{ url_for('post_detail', pk=i.id) }}" class="col-4" style="text-decoration: none; color: white;">
                     <div class="col-4">
                         <div class="card cards">
@@ -26,10 +28,12 @@ Blogs - DevExplorer
                 </a>
             {% endfor %}
         {% else %}
+            <!-- Messaging the user that no posts exists -->
             <h1 style="font-weight: bolder; text-align: center;">No Posts Yet! Be the first to post one!</h1>
         {% endif %}
     </div>
 
+    <!-- Pagination -->
     {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
         {% if page_num %}
             {% if posts.page == page_num %}
@@ -44,7 +48,5 @@ Blogs - DevExplorer
     {% endfor %}
 
 </div>
-
 <br><br>
-
 {% endblock content %}

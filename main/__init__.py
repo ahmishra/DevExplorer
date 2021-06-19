@@ -1,4 +1,4 @@
-# Other Imports
+# Other Imports / Extentions
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
@@ -51,9 +51,12 @@ class ScrapeNews():
             article_images.append(article_image)
 
         df = pd.DataFrame(
-            {"title": article_titles, "content": article_contents, "href": article_hrefs, "image": article_images})
+            {"title": article_titles, "content": article_contents, "href": article_hrefs, "image": article_images}
+        )
         writer = pd.ExcelWriter(
-            'main\\Techcrunch_latest_news.xlsx', engine='xlsxwriter')
+            'main\\Techcrunch_latest_news.xlsx', engine='xlsxwriter'
+        )
+        
         df.to_excel(writer, sheet_name='Sheet1', index=False)
         self.auto_adjust_excel_columns(writer.sheets['Sheet1'], df)
         writer.save()
@@ -66,6 +69,7 @@ class ScrapeNews():
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "9d12c768633d5e7154681084f45d19ed"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Extentions
 db = SQLAlchemy(app=app)

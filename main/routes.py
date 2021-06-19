@@ -1,3 +1,4 @@
+# Imports
 from flask_login.utils import login_required, login_user, current_user, logout_user
 from werkzeug.wrappers import request
 from main.models import User, Post
@@ -6,6 +7,7 @@ from main.forms import RegistrationForm, LoginForm, NewPostForm
 from main import app, bcrypt, db, ScrapeNews
 import xlrd
 
+# Major bug fixing line, (elementtree has not attr getiterator) caused by python 3.9+
 xlrd.xlsx.ensure_elementtree_imported(False, None)
 xlrd.xlsx.Element_has_iter = True
 
@@ -15,6 +17,10 @@ xlrd.xlsx.Element_has_iter = True
 def home():
 	return render_template("index.html")
 
+
+"""
+User Authentication
+"""
 
 
 # Register Page
@@ -38,6 +44,7 @@ def register():
 	return render_template("register.html", form=form)
 
 
+
 # Login Page
 @app.route("/login", methods=["POST", "GET"])
 def login():
@@ -59,6 +66,7 @@ def login():
 	return render_template("login.html", form=form)
 
 
+
 # Logging Out The User
 @app.route("/logout")
 def logout():
@@ -66,15 +74,41 @@ def logout():
 	return redirect(url_for('home'))
 
 
-# List Posts Page
+
+"""
+Main juice of the project
+"""
+
+# DevNews
+@app.route("/devnews")
+def devnews():
+	ScrapeNews().scrape()
+	excel_file = ("main\\TechCrunch_latest_news.xlsx")
+	wb = xlrd.open_workbook(excel_file)
+	sheet = wb.sheet_by_index(0)
+	return render_template("devnews.html", sheet=sheet, cols=[i for i in range(sheet.nrows)])
+
+
+
+# Map
+@app.route("/map", methods=["GET", "POST"])
+def map():
+	mapbox_token = "pk.eyJ1IjoiYXJ5YW5taXNocmEiLCJhIjoiY2txMHZjenYzMDdvOTJ2cDg5eGd6YXJmYiJ9.fYTdLFatoaLwFzx4R9z9nA"
+	return render_template('map.html', mapbox_access_token=mapbox_token)
+
+
+
+# Blog(List)
 @app.route("/posts")
 def list_posts():
 	page = request.args.get('page', 1, type=int)
-	posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=6)
+	posts = Post.query.order_by(
+		Post.date_posted.desc()).paginate(page=page, per_page=6)
 	return render_template("posts.html", posts=posts)
 
 
-# New Post Page
+
+# Blog(New)
 @app.route("/posts/new", methods=["POST", "GET"])
 @login_required
 def new_post():
@@ -89,14 +123,17 @@ def new_post():
 
 	return render_template("new-post.html", form=form)
 
-# Post Detail View
+
+
+# Blog(Detail)
 @app.route("/post/<int:pk>")
 def post_detail(pk):
 	post = Post.query.get_or_404(pk)
 	return render_template('post-detail.html', post=post)
 
 
-# Post Update View
+
+# Blog(Update)
 @app.route("/post/<int:pk>/update", methods=["POST", "GET"])
 @login_required
 def post_update(pk):
@@ -121,7 +158,8 @@ def post_update(pk):
 	return render_template('post-update.html', form=form)
 
 
-# Delete Posts
+
+# Blog(Delete)
 @app.route("/post/<int:pk>/delete", methods=["POST", "GET"])
 @login_required
 def post_delete(pk):
@@ -134,22 +172,6 @@ def post_delete(pk):
 	flash("Your Post, Has Been Deleted!", "success")
 	return redirect(url_for('list_posts'))
 
-
-# DevNews
-@app.route("/devnews")
-def devnews():
-	ScrapeNews().scrape()
-	excel_file = ("main\\TechCrunch_latest_news.xlsx")
-	wb = xlrd.open_workbook(excel_file)
-	sheet = wb.sheet_by_index(0)
-	return render_template("devnews.html", sheet=sheet, cols=[i for i in range(sheet.nrows)])
-
-
-# Map
-@app.route("/map", methods=["GET", "POST"])
-def map():
-	mapbox_token = "pk.eyJ1IjoiYXJ5YW5taXNocmEiLCJhIjoiY2txMHZjenYzMDdvOTJ2cDg5eGd6YXJmYiJ9.fYTdLFatoaLwFzx4R9z9nA"
-	return render_template('map.html', mapbox_access_token=mapbox_token)
 
 
 # Credits ;)

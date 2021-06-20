@@ -3,8 +3,9 @@ from flask_login.utils import login_required, login_user, current_user, logout_u
 from werkzeug.wrappers import request
 from main.models import User, Post
 from flask import render_template, redirect, url_for, flash, abort, request
-from main.forms import RegistrationForm, LoginForm, NewPostForm
-from main import app, bcrypt, db, ScrapeNews
+from main.forms import RegistrationForm, LoginForm, NewPostForm, ResetPWDForm, RequestResetPWDForm
+from main import app, bcrypt, db, news_scraper, mail
+from flask_mail import Message
 import xlrd
 
 # Major bug fixing line, (elementtree has not attr getiterator) caused by python 3.9+
@@ -35,7 +36,7 @@ def register():
 	# Adding User To Database Once Submitted
 	if form.validate_on_submit():
 		hashed_pwd = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-		user = User(username=form.username.data, password=hashed_pwd)
+		user = User(username=form.username.data, password=hashed_pwd, email=form.email.data)
 		db.session.add(user)
 		db.session.commit()
 		flash(f"Registration Was Succesful For {form.username.data}, You can now login!", "success")
@@ -75,6 +76,66 @@ def logout():
 
 
 
+# Request Reset Password Form
+@app.route("/passwordreset", methods=["GET", "POST"])
+def request_reset_pwd():
+	if current_user.is_authenticated:
+		flash("You are already logged in please log out first", "warning")
+		return redirect(url_for('home'))
+
+	form = RequestResetPWDForm()
+
+	if form.validate_on_submit():
+		user = User.query.filter_by(email=form.email.data).first()
+		send_reset_email(user)
+		flash("An email was sent to your inbox, please follow the instructions inside of it to reset your password!", "info")
+		return redirect(url_for('login'))
+
+	return render_template("request_reset_password.html", form=form)
+
+
+
+# Reset Password Form
+@app.route("/passwordreset/<token>", methods=["GET", "POST"])
+def reset_pwd(token):
+	if current_user.is_authenticated:
+		flash("You are already logged in please log out first", "warning")
+		return redirect(url_for('home'))
+
+	user = User.verify_reset_token(token=token)
+
+	if user is None:
+		flash("The token that you provided is maybe invalid or is expired", "warning")
+		return redirect(url_for("request_reset_pwd"))
+
+	form = ResetPWDForm()
+
+	# Adding User To Database Once Submitted
+	if form.validate_on_submit():
+		hashed_pwd = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+		user.password = hashed_pwd
+		db.session.commit()
+		flash(f"Your password was changed successfully, You may now login!", "success")
+		return redirect(url_for('login'))
+
+	return render_template("reset_token.html", form=form)
+
+
+
+# Email Sender
+def send_reset_email(user):
+	token = user.get_reset_token()
+	msg = Message("DevExplorer- Reset Your Password",
+	              sender="umasaryan@gmail.com", recipients=[user.email])
+	msg.body = f"""DevExplorer - Reset Your Password:
+To reset your password please visit this link {url_for('reset_pwd', token=token, _external=True)}
+
+If you didn't make this request simply, ignore or delete this email!
+	"""
+
+	mail.send(msg)
+
+
 """
 Main juice of the project
 """
@@ -82,7 +143,7 @@ Main juice of the project
 # DevNews
 @app.route("/devnews")
 def devnews():
-	ScrapeNews().scrape()
+	news_scraper.scrape()
 	excel_file = ("main\\TechCrunch_latest_news.xlsx")
 	wb = xlrd.open_workbook(excel_file)
 	sheet = wb.sheet_by_index(0)

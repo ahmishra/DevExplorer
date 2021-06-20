@@ -66,8 +66,15 @@ Login - DevExplorer
 
         <br><br>
 
-        <!-- REGISTER REDIRECT -->
-        <p style="text-align: left;"><small class="text-mute">Not registered yet? <a href="{{ url_for('register') }}">Register</a></small></p>
+        <!-- REGISTER REDIRECT & FORGOT PASSWIRD -->
+        <p style="text-align: left;">
+            <small class="text-mute">
+                Not registered yet? <a href="{{ url_for('register') }}">Register</a>
+            </small>
+            <small class="text-mute">
+                <a href="{{ url_for('request_reset_pwd') }}" style="text-decoration: none;">&ensp;Forgot Password?</a>
+            </small>
+        </p>
 
     </form>
 </div>

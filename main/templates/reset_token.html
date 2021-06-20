@@ -1,53 +1,19 @@
 {% extends "base.html" %}
 
 {% block title %}
-Register - DevExplorer
+Request Reset Password - DevExplorer
 {% endblock title %}
 
 {% block content %}
 <div class="container">
-    
-    <!-- REGISTER FORM -->
+
+    <!-- LOGIN FORM -->
     <form method="POST" action="">
         <!-- CSRF TOKEN -->
         {{ form.hidden_tag() }}
+
+        <!-- FORM LAYOUT -->
         <fieldset class="form-group">
-
-            <!-- USERNAME -->
-            <div class="form-group">
-                {{ form.username.label(class="form-control-label") }}
-                {% if form.username.errors %}
-                {{ form.username(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.username.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{ form.username(class="form-control form-control-lg") }}
-                {% endif %}
-
-            </div>
-
-            <br>
-
-            <!-- EMAIL -->
-            <div class="form-group">
-                {{ form.email.label(class="form-control-label") }}
-                {% if form.email.errors %}
-                {{ form.email(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.email.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{ form.email(class="form-control form-control-lg") }}
-                {% endif %}
-            
-            </div>
-
-            <br>
 
             <!-- PASSWORD -->
             <div class="form-group">
@@ -62,11 +28,12 @@ Register - DevExplorer
                 {% else %}
                 {{ form.password(class="form-control form-control-lg") }}
                 {% endif %}
+
             </div>
 
             <br>
 
-            <!-- PASSWORD CONFIRM -->
+            <!-- CONFIRM PASSWORD -->
             <div class="form-group">
                 {{ form.password_confirm.label(class="form-control-label") }}
                 {% if form.password_confirm.errors %}
@@ -79,21 +46,18 @@ Register - DevExplorer
                 {% else %}
                 {{ form.password_confirm(class="form-control form-control-lg") }}
                 {% endif %}
+            
             </div>
+
         </fieldset>
 
         <br>
 
-        <!-- SUBMIT BTN -->
+        <!-- SUBMIT -->
         <div class="form-group">
             {{ form.submit(class="btn btn-outline-info") }}
         </div>
-
-        <br><br>
-
-        <!-- LOGIN REDIRECT -->
-        <p style="text-align: left;"><small class="text-mute">Already Have An Account? <a href="{{ url_for('login') }}">Login</a></small></p>
-
     </form>
 </div>
+
 {% endblock content %}

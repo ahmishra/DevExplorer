@@ -152,6 +152,7 @@ def devnews():
 	if platform.system() == "Windows":
 		excel_file = ("main\\TechCrunch_latest_news.xlsx")
 	else:
+		os.system("readlink -f TechCrunch_latest_news.xlsx")
 		excel_file = ("TechCrunch_latest_news.xlsx")
 	
 	wb = xlrd.open_workbook(excel_file)

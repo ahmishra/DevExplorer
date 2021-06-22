@@ -6,6 +6,7 @@ from flask_login import LoginManager
 from flaskext.markdown import Markdown
 from flask_mail import Mail
 import os
+import platform
 
 # https://www.bing.com/HPImageArchive.aspx?format=xml&idx=0&n=1&mkt=en-US
 
@@ -57,9 +58,14 @@ class ScrapeNews():
         df = pd.DataFrame(
             {"title": article_titles, "content": article_contents, "href": article_hrefs, "image": article_images}
         )
-        writer = pd.ExcelWriter(
-            'main\\Techcrunch_latest_news.xlsx', engine='xlsxwriter'
-        )
+        if platform.system() == "Windows":
+            writer = pd.ExcelWriter(
+                'main\\Techcrunch_latest_news.xlsx', engine='xlsxwriter'
+            )
+        else:
+            writer = pd.ExcelWriter(
+                'main/Techcrunch_latest_news.xlsx', engine='xlsxwriter'
+            )
         
         df.to_excel(writer, sheet_name='Sheet1', index=False)
         self.auto_adjust_excel_columns(writer.sheets['Sheet1'], df)

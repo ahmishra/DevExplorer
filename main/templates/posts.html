@@ -30,6 +30,11 @@ Blogs - DevExplorer
         {% else %}
             <!-- Messaging the user that no posts exists -->
             <h1 style="font-weight: bolder; text-align: center;">No Posts Yet! Be the first to post one!</h1>
+
+            <div class="text-center">
+                <br>
+                <a href="{{ url_for('new_post') }}" class="btn btn-outline-primary btn-lg">Post</a>
+            </div>
         {% endif %}
     </div>
 

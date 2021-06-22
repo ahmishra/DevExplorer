@@ -24,6 +24,7 @@ class RegistrationForm(FlaskForm):
         if user:
             raise ValidationError("That email is taken, please choose another one.")
 
+
 # Login Form
 class LoginForm(FlaskForm):
     username = StringField("Username", validators=[
@@ -51,6 +52,7 @@ class RequestResetPWDForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is None:
             raise ValidationError('There is no account with that email. You must register first.')
+
 
 # Password Reset Form
 class ResetPWDForm(FlaskForm):

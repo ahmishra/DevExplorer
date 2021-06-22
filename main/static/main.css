@@ -84,16 +84,16 @@ body {
 	padding: 30px;
 	width: 25rem;
 	margin: 0px;
-	box-shadow: 0px 1px 20px black;
+	/* box-shadow: 0px 1px 20px black; */
 	border-radius: 25px;
 	margin-bottom: 30px;
-	border: 1px solid white;
+	border: 1px solid gray;
 }
 
 
 /* Hover effect to "Enchanced Cards" */
 .cards:hover {
-	box-shadow: 0px 0px 50px #000000;
+	box-shadow: 0px 0px 25px #000000;
     z-index: 2;
     -webkit-transition: all 200ms ease-in;
     -webkit-transform: scale(1.2);
@@ -246,6 +246,7 @@ nav {
 	font-weight: bolder;
 	padding: 20px;
 }
+
 
 #content {
 	padding: 30px;

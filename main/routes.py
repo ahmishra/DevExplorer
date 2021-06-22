@@ -7,6 +7,7 @@ from main.forms import RegistrationForm, LoginForm, NewPostForm, ResetPWDForm, R
 from main import app, bcrypt, db, news_scraper, mail
 from flask_mail import Message
 import xlrd
+import platform
 
 # Major bug fixing line, (elementtree has not attr getiterator) caused by python 3.9+
 xlrd.xlsx.ensure_elementtree_imported(False, None)
@@ -127,13 +128,16 @@ def send_reset_email(user):
 	token = user.get_reset_token()
 	msg = Message("DevExplorer- Reset Your Password",
 	              sender="devexplorerh1@gmail.com", recipients=[user.email])
-	msg.body = f"""DevExplorer - Reset Your Password:
+	msg.body = f"""DevExplorer - Reset Your Password:\n
 To reset your password please visit this link {url_for('reset_pwd', token=token, _external=True)}
 
 If you didn't make this request simply, ignore or delete this email!
 	"""
 
 	mail.send(msg)
+
+
+
 
 
 """
@@ -144,7 +148,12 @@ Main juice of the project
 @app.route("/devnews")
 def devnews():
 	news_scraper.scrape()
-	excel_file = ("main\\TechCrunch_latest_news.xlsx")
+	
+	if platform.system() == "Windows":
+		excel_file = ("main\\TechCrunch_latest_news.xlsx")
+	else:
+		excel_file = ("main//TechCrunch_latest_news.xlsx")
+	
 	wb = xlrd.open_workbook(excel_file)
 	sheet = wb.sheet_by_index(0)
 	return render_template("devnews.html", sheet=sheet, cols=[i for i in range(sheet.nrows)])

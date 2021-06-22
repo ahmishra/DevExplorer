@@ -1,17 +1,3 @@
-# Other Imports / Extentions
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_bcrypt import Bcrypt
-from flask_login import LoginManager
-from flaskext.markdown import Markdown
-from flask_mail import Mail
-import os
-import platform
-
-# https://www.bing.com/HPImageArchive.aspx?format=xml&idx=0&n=1&mkt=en-US
-
-# Tech Crunch Scraper
-
 import bs4
 import requests
 
@@ -40,34 +26,14 @@ class ScrapeNews():
             article_hrefs.append(article_href)
             article_images.append(article_image)
 
+
+
         return zip(article_hrefs, article_titles, article_contents, article_images)
+
 
     def return_news(self):
         scraped_data = self.scrape()
         news = [i for i in scraped_data]
-
+        
         return news
 
-
-
-# GLOBAL APP VARIABLES
-app = Flask(__name__)
-app.config['SECRET_KEY'] = "9d12c768633d5e7154681084f45d19ed"
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///site.db"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
-app.config['MAIL_PORT'] = 0000
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'devexplorerh1@gmail.com'
-app.config['MAIL_PASSWORD'] = "explorer11thousand"
-
-# Extentions
-db = SQLAlchemy(app=app)
-bcrypt = Bcrypt(app=app)
-login_manager = LoginManager(app=app)
-md = Markdown(app)
-news_scraper = ScrapeNews()
-mail = Mail(app=app)
-
-# Importing Routes
-from main import routes

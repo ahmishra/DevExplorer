@@ -6,12 +6,6 @@ from flask import render_template, redirect, url_for, flash, abort, request
 from main.forms import RegistrationForm, LoginForm, NewPostForm, ResetPWDForm, RequestResetPWDForm
 from main import app, bcrypt, db, news_scraper, mail
 from flask_mail import Message
-import xlrd
-import platform
-
-# Major bug fixing line, (elementtree has not attr getiterator) caused by python 3.9+
-xlrd.xlsx.ensure_elementtree_imported(False, None)
-xlrd.xlsx.Element_has_iter = True
 
 
 # Home Page
@@ -147,17 +141,8 @@ Main juice of the project
 # DevNews
 @app.route("/devnews")
 def devnews():
-	news_scraper.scrape()
-	
-	if platform.system() == "Windows":
-		excel_file = ("main\\TechCrunch_latest_news.xlsx")
-	else:
-		os.system("readlink -f TechCrunch_latest_news.xlsx")
-		excel_file = ("TechCrunch_latest_news.xlsx")
-	
-	wb = xlrd.open_workbook(excel_file)
-	sheet = wb.sheet_by_index(0)
-	return render_template("devnews.html", sheet=sheet, cols=[i for i in range(sheet.nrows)])
+	news=news_scraper.return_news()
+	return render_template("devnews.html", news=news)
 
 
 

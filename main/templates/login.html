@@ -6,77 +6,85 @@ Login - DevExplorer
 
 {% block content %}
 <div class="container">
+    <div class="card auth-form mx-auto" style="width: 25rem;">
+        <div class="card-body">
 
-    <!-- LOGIN FORM -->
-    <form method="POST" action="">
-        <!-- CSRF TOKEN -->
-        {{ form.hidden_tag() }}
-
-        <!-- FORM LAYOUT -->
-        <fieldset class="form-group">
-
-            <!-- USERNAME -->
-            <div class="form-group">
-                {{ form.username.label(class="form-control-label") }}
-                {% if form.username.errors %}
-                {{ form.username(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.username.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{ form.username(class="form-control form-control-lg") }}
-                {% endif %}
-
+            <!-- ICON AND LOGO -->
+            <div class="logo" style="display: flex; align-items: center;">
+                <img src="{{ url_for('static', filename='icon.png') }}" alt="logo" width="20" height="20">
+                <span style="font-weight: 700; font-size: 20px; padding: 10px;">DevExplorer</span>
             </div>
+
 
             <br>
 
-            <!-- PASSWORD -->
-            <div class="form-group">
-                {{ form.password.label(class="form-control-label") }}
-                {% if form.password.errors %}
-                {{ form.password(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.password.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
+
+            <!-- LOGIN FORM -->
+            <form method="POST" action="">
+                <!-- CSRF TOKEN -->
+                {{ form.hidden_tag() }}
+            
+                <!-- FORM LAYOUT -->
+                <fieldset class="form-group">
+            
+                    <!-- USERNAME -->
+                    <div class="form-group">
+                        {{ form.username.label(class="form-control-label") }}
+                        {% if form.username.errors %}
+                        {{ form.username(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.username(class="form-control form-control-lg") }}
+                        {% endif %}
+            
+                    </div>
+            
+                    <br>
+            
+                    <!-- PASSWORD -->
+                    <div class="form-group">
+                        {{ form.password.label(class="form-control-label") }}
+                        {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.password(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+            
+                    <br>
+            
+                    <!-- REMEMBER ME -->
+                    <div class="form-check">
+                        {{ form.remember_me(class="form-check-input") }}
+                        {{ form.remember_me.label(class="form-check-label") }}
+
+                        <a href="{{ url_for('request_reset_pwd') }}" style="position: absolute; right: 10%; text-decoration: none;">Forgot Password?</a>
+                    </div>
+                </fieldset>
+            
+                <br>
+            
+                <!-- SUBMIT AND CREATE ACCOUNT -->
+                <div class="form-group btn-lg" style="float: right;">
+                    {{ form.submit(class="btn btn-primary") }}
+                    <small class="btn" style="position: absolute; left: 8%; border: none;">
+                        <a href="{{ url_for('register') }}" style="text-decoration: none;">Create Account</a>
+                    </small>
                 </div>
-                {% else %}
-                {{ form.password(class="form-control form-control-lg") }}
-                {% endif %}
-            </div>
-
-            <br>
-
-            <!-- REMEMBER ME -->
-            <div class="form-check">
-                {{ form.remember_me(class="form-check-input") }}
-                {{ form.remember_me.label(class="form-check-label") }}
-            </div>
-        </fieldset>
-
-        <br>
-
-        <!-- SUBMIT -->
-        <div class="form-group">
-            {{ form.submit(class="btn btn-outline-info") }}
+            
+                <br><br>
+            </form>
         </div>
-
-        <br><br>
-
-        <!-- REGISTER REDIRECT & FORGOT PASSWIRD -->
-        <p style="text-align: left;">
-            <small class="text-mute">
-                Not registered yet? <a href="{{ url_for('register') }}">Register</a>
-            </small>
-            <small class="text-mute">
-                <a href="{{ url_for('request_reset_pwd') }}" style="text-decoration: none;">&ensp;Forgot Password?</a>
-            </small>
-        </p>
-
-    </form>
+    </div>
 </div>
 
 {% endblock content %}

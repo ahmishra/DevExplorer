@@ -6,94 +6,93 @@ Register - DevExplorer
 
 {% block content %}
 <div class="container">
-    
-    <!-- REGISTER FORM -->
-    <form method="POST" action="">
-        <!-- CSRF TOKEN -->
-        {{ form.hidden_tag() }}
-        <fieldset class="form-group">
+    <div class="card auth-form mx-auto" style="width: 25rem;">
+        <div class="card-body">
 
-            <!-- USERNAME -->
-            <div class="form-group">
-                {{ form.username.label(class="form-control-label") }}
-                {% if form.username.errors %}
-                {{ form.username(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.username.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{ form.username(class="form-control form-control-lg") }}
-                {% endif %}
-
+            <!-- ICON AND LOGO -->
+            <div class="logo" style="display: flex; align-items: center;">
+                <img src="{{ url_for('static', filename='icon.png') }}" alt="logo" width="20" height="20">
+                <span style="font-weight: 700; font-size: 20px; padding: 10px;">DevExplorer</span>
             </div>
+
 
             <br>
 
-            <!-- EMAIL -->
-            <div class="form-group">
-                {{ form.email.label(class="form-control-label") }}
-                {% if form.email.errors %}
-                {{ form.email(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.email.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
+
+            <!-- LOGIN FORM -->
+            <form method="POST" action="">
+                <!-- CSRF TOKEN -->
+                {{ form.hidden_tag() }}
+
+                <!-- FORM LAYOUT -->
+                <fieldset class="form-group">
+
+                    <!-- USERNAME -->
+                    <div class="form-group">
+                        {{ form.username.label(class="form-control-label") }}
+                        {% if form.username.errors %}
+                        {{ form.username(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.username(class="form-control form-control-lg") }}
+                        {% endif %}
+
+                    </div>
+
+                    <br>
+
+                    <!-- PASSWORD -->
+                    <div class="form-group">
+                        {{ form.password.label(class="form-control-label") }}
+                        {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.password(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+
+                    <br>
+
+                    <!-- PASSWORD CONFIRM -->
+                    <div class="form-group">
+                        {{ form.password_confirm.label(class="form-control-label") }}
+                        {% if form.password_confirm.errors %}
+                        {{ form.password_confirm(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password_confirm.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.password_confirm(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+
+                    <br>
+                </fieldset>
+
+                <br>
+
+                <!-- SUBMIT AND CREATE ACCOUNT -->
+                <div class="form-group btn-lg" style="float: right;">
+                    {{ form.submit(class="btn btn-primary") }}
+                    <small class="btn" style="position: absolute; left: 8%; border: none;">
+                        <a href="{{ url_for('login') }}" style="text-decoration: none;">Login</a>
+                    </small>
                 </div>
-                {% else %}
-                {{ form.email(class="form-control form-control-lg") }}
-                {% endif %}
-            
-            </div>
 
-            <br>
-
-            <!-- PASSWORD -->
-            <div class="form-group">
-                {{ form.password.label(class="form-control-label") }}
-                {% if form.password.errors %}
-                {{ form.password(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.password.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{ form.password(class="form-control form-control-lg") }}
-                {% endif %}
-            </div>
-
-            <br>
-
-            <!-- PASSWORD CONFIRM -->
-            <div class="form-group">
-                {{ form.password_confirm.label(class="form-control-label") }}
-                {% if form.password_confirm.errors %}
-                {{ form.password_confirm(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.password_confirm.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{ form.password_confirm(class="form-control form-control-lg") }}
-                {% endif %}
-            </div>
-        </fieldset>
-
-        <br>
-
-        <!-- SUBMIT BTN -->
-        <div class="form-group">
-            {{ form.submit(class="btn btn-outline-info") }}
+                <br><br>
+            </form>
         </div>
-
-        <br><br>
-
-        <!-- LOGIN REDIRECT -->
-        <p style="text-align: left;"><small class="text-mute">Already Have An Account? <a href="{{ url_for('login') }}">Login</a></small></p>
-
-    </form>
+    </div>
 </div>
 {% endblock content %}

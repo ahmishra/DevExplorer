@@ -167,6 +167,14 @@ body {
 }
 
 
+/* Styling for user authentication cards */
+.auth-form{
+	padding: 25px;
+	color: black;
+	border-radius: 10px;
+}
+
+
 /* Bounce Animation */
 @keyframes bounce{
     from { transform: translate3d(0, 0, 0);}

@@ -5,10 +5,6 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flaskext.markdown import Markdown
 from flask_mail import Mail
-import os
-import platform
-
-# https://www.bing.com/HPImageArchive.aspx?format=xml&idx=0&n=1&mkt=en-US
 
 # Tech Crunch Scraper
 

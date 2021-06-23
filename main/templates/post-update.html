@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-Update Blog - {{ form.title.data }} - DevExplorer
+Update Blog - DevExplorer
 {% endblock title %}
 
 {% block content %}
@@ -14,43 +14,55 @@ Update Blog - {{ form.title.data }} - DevExplorer
         <!-- FORM LAYOUT -->
         <fieldset class="form-group">
 
-            <!-- TITLE -->
-            <div class="form-group">
-                {{ form.title.label(class="form-control-label") }}
-                {% if form.title.errors %}
-                {{ form.title(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.title.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
+            <div class="row">
+
+                <div class="col-7">
+                    <!-- TITLE -->
+                    <div class="form-group">
+                        {{ form.title.label(class="form-control-label") }}
+                        {% if form.title.errors %}
+                        {{ form.title(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.title.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.title(class="form-control form-control-lg") }}
+                        {% endif %}
+
+                    </div>
                 </div>
-                {% else %}
-                {{ form.title(class="form-control form-control-lg") }}
-                {% endif %}
 
-            </div>
-
-            <br>
-
-            <!-- THUMBNAIL -->
-            <div class="form-group">
-                {{ form.thumbnail.label(class="form-control-label") }}
-                {% if form.thumbnail.errors %}
-                {{ form.thumbnail(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.thumbnail.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
+                <div class="col-3">
+                    <!-- THUMBNAIL -->
+                    <div class="form-group">
+                        {{ form.thumbnail.label(class="form-control-label") }}
+                        {% if form.thumbnail.errors %}
+                        {{ form.thumbnail(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.thumbnail.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.thumbnail(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
                 </div>
-                {% else %}
-                {{ form.thumbnail(class="form-control form-control-lg") }}
-                {% endif %}
+
+                <div class="col-1" style="padding-top: 35px;">
+                    <!-- SUBMIT -->
+                    <div class="form-group">
+                        {{ form.submit(class="btn btn-outline-info btn-lg") }}
+                    </div>
+                </div>
             </div>
 
             <br>
 
             <!-- CONTENT -->
-            <div class="form-group">
+            <div class="form-group" style="width: 91%;">
                 {{ form.content.label(class="form-control-label") }}
                 {% if form.content.errors %}
                 {{ form.content(class="form-control form-control-lg is-invalid") }}
@@ -65,14 +77,10 @@ Update Blog - {{ form.title.data }} - DevExplorer
             </div>
 
             <br>
+
         </fieldset>
 
         <br>
-
-        <!-- SUBMIT -->
-        <div class="form-group">
-            {{ form.submit(class="btn btn-outline-info") }}
-        </div>
     </form>
 </div>
 <br><br>

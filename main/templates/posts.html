@@ -5,6 +5,12 @@ Blogs - DevExplorer
 
 {% block content %}
 <div class="container">
+    <div class="text-center">
+        <button class="rainbow-button btn btn-primary btn-lg" onclick="randomizeBg()">Randomize Background</button>
+    </div>
+
+    <br><br>
+
     <div class="row">
         <!-- Displaying the posts, if the database if empty telling the user to post a post -->
         {% if posts.items != [] %}
@@ -12,7 +18,7 @@ Blogs - DevExplorer
                 <!-- Displaying the posts if exists -->
                 <a href="{{ url_for('post_detail', pk=i.id) }}" class="col-4" style="text-decoration: none; color: white;">
                     <div class="col-4">
-                        <div class="card cards">
+                        <div class="card cards" style="box-shadow: 1px 1px 30px black; border: none;">
                             <img src="{{ i.thumbnail }}" alt="Image Support" style="border-radius: 25px; height: 12rem;">
                             <div class="card-body">
                                 <h5 class="card-title">
@@ -54,4 +60,5 @@ Blogs - DevExplorer
 
 </div>
 <br><br>
+
 {% endblock content %}

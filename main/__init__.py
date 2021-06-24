@@ -1,7 +1,7 @@
 """
 Heart of the app :)
 
-PYLINT: 9.79/10
+PYLINT: 9.80/10
 """
 
 
@@ -57,6 +57,7 @@ class ScrapeNews():
 
         return zip(article_hrefs, article_titles, article_contents, article_images)
 
+
     def return_news(self):
 
         """
@@ -75,16 +76,10 @@ class ScrapeNews():
 
 
 
-# GLOBAL APP VARIABLES
+
+# Main App
 app = Flask(__name__)
-app.config['SECRET_KEY'] = "9d12c768633d5e7154681084f45d19ed"
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///site.db"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
-app.config['MAIL_PORT'] = 0000
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'devexplorerh1@gmail.com'
-app.config['MAIL_PASSWORD'] = "explorer11thousand"
+
 
 # Extentions
 db = SQLAlchemy(app=app)
@@ -93,6 +88,20 @@ login_manager = LoginManager(app=app)
 md = Markdown(app)
 news_scraper = ScrapeNews()
 mail = Mail(app=app)
+login_manager = LoginManager(app)
+
+
+# GLOBAL APP VARIABLES
+app.config['SECRET_KEY'] = "9d12c768633d5e7154681084f45d19ed"
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///site.db"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
+app.config['MAIL_PORT'] = 0000
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'devexplorerh1@gmail.com'
+app.config['MAIL_PASSWORD'] = "explorer11thousand"
+login_manager.login_view = 'login'
+login_manager.login_message_category = 'info'
 
 # Importing Routes (AT THE END TO AVOID CIRCULAR IMPORTS)
 from main import routes

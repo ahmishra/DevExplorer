@@ -355,7 +355,7 @@ def post_delete(primary_key):
 def credits_page():
 
     """
-    ^_^ some cheeky credits, I suppose
+    ^_^ some cheeky credits, I suppose...
     """
 
     return render_template("credits.html")

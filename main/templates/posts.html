@@ -6,6 +6,14 @@ Blogs - DevExplorer
 {% block content %}
 <div class="container">
     <div class="row">
+        <div class="text-center">
+            <a href="{{ url_for('new_post') }}">
+                <button class="btn btn-primary btn-primary btn-lg rainbow-button">Post A New Blog</button>
+            </a>
+
+            <br><br><br>
+        </div>
+
         <!-- Displaying the posts, if the database if empty telling the user to post a post -->
         {% if posts.items != [] %}
             {% for i in posts.items %}

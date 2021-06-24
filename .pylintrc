@@ -1,0 +1,3 @@
+[DEFAULT]
+ignored-classes=scoped_session,SQLAlchemy
+disable=too-few-public-methods,R0201

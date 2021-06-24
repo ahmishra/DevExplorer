@@ -1,3 +1,10 @@
+"""
+Heart of the app :)
+
+PYLINT: 9.79/10
+"""
+
+
 # Other Imports / Extentions
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -13,15 +20,27 @@ import requests
 
 
 class ScrapeNews():
+
+    """
+    Class that will be used in routes.py to get the scraped news info
+    """
+
     def scrape(self):
-        url = "https://techcrunch.com/"
-        response = requests.get(url)
+
+        """
+        :params: none
+
+        Main news scraper
+        """
+
+        response = requests.get("https://techcrunch.com/")
 
         soup = bs4.BeautifulSoup(response.text, "html.parser")
 
         article_titles, article_contents, article_hrefs, article_images = [], [], [], []
 
-        for tag in soup.findAll("div", {"class": "post-block post-block--image post-block--unread"}):
+        for tag in soup.findAll("div",{"class": "post-block post-block--image post-block--unread"}):
+
             tag_header = tag.find("a", {"class": "post-block__title__link"})
             tag_content = tag.find("div", {"class": "post-block__content"})
             tag_image = tag.find("figure", {"class": "post-block__media"})
@@ -39,8 +58,18 @@ class ScrapeNews():
         return zip(article_hrefs, article_titles, article_contents, article_images)
 
     def return_news(self):
+
+        """
+        :params:none
+
+        Returns the news in parseable format
+        """
+
         scraped_data = self.scrape()
-        news = [i for i in scraped_data]
+        news = []
+
+        for a_news in scraped_data:
+            news.append(a_news)
 
         return news
 
@@ -65,5 +94,5 @@ md = Markdown(app)
 news_scraper = ScrapeNews()
 mail = Mail(app=app)
 
-# Importing Routes
+# Importing Routes (AT THE END TO AVOID CIRCULAR IMPORTS)
 from main import routes

@@ -14,11 +14,11 @@
 
         <!-- Displaying Edit and Delete buttons if the current user is the author of the post -->
         {% if post.author == current_user %}
-            <a href="{{ url_for('post_update', pk=post.id) }}" style="float: right;">
+            <a href="{{ url_for('post_update', primary_key=post.id) }}" style="float: right;">
                 <i class="fas fa-pencil-alt fa-1x btn btn-outline-warning btn-lg"></i>
             </a>
 
-            <a href="{{ url_for('post_delete', pk=post.id) }}" style="float: right; margin-right: 10px;">
+            <a href="{{ url_for('post_delete', primary_key=post.id) }}" style="float: right; margin-right: 10px;">
                 <i class="far fa-trash-alt fa-1x btn btn-outline-danger btn-lg"></i>
             </a>
         {% endif %}

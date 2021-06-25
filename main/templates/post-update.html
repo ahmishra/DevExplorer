@@ -5,7 +5,6 @@ Update Blog - DevExplorer
 
 {% block content %}
 <div class="container">
-
     <!-- UPDATE POST FORM -->
     <form method="POST" action="">
         <!-- CSRF TOKEN -->
@@ -59,11 +58,12 @@ Update Blog - DevExplorer
                 </div>
             </div>
 
-            <br>
+            <br><br>
 
             <!-- CONTENT -->
             <div class="form-group" style="width: 91%;">
                 {{ form.content.label(class="form-control-label") }}
+                <br><br>
                 {% if form.content.errors %}
                 {{ form.content(class="form-control form-control-lg is-invalid") }}
                 <div class="invalid-feedback">
@@ -79,9 +79,37 @@ Update Blog - DevExplorer
             <br>
 
         </fieldset>
-
-        <br>
     </form>
+
+    <br>
+
+    <hr style="height: 5px; width: 91%;">
+
+    <br>
+
+    <div class="preview jumbotron">
+        <div class="row">
+            <div class="col-1">
+                <h3>Preview</h3>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-outline-info" onclick="previewContent()">Click to Preview</button>
+            </div>            
+        </div>
+
+        <br><br>
+
+        <div id="preview-content" style="width: 91%;"></div>
+    </div>
+
 </div>
 <br><br>
+
+<script>
+    function previewContent() {
+        var content = document.getElementById("content").value;
+        document.getElementById("preview-content").innerHTML = marked(content);
+    }
+</script>
+
 {% endblock content %}

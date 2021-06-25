@@ -23,10 +23,12 @@ Blogs - DevExplorer
                         <div class="card cards" style="box-shadow: 1px 1px 30px black; border: none;">
                             <img src="{{ i.thumbnail }}" alt="Image Support" style="border-radius: 25px; height: 12rem;">
                             <div class="card-body">
-                                <h5 class="card-title">
+                                <h5 class="card-title" style="font-weight: 600;">
                                     {{ i.title }}
                                 </h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Author: {{ i.author.username }} &emsp; Posted On: {{ i.date_posted.date() }}</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    Author: {{ i.author.username }} &emsp; Posted On: {{ i.date_posted.date() }}
+                                </h6>
                             </div>
                         </div>
                     </div>

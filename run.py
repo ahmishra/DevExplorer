@@ -4,6 +4,8 @@ runs it locally at a free port for example, localhost:5000
 
 PYLINT: 10/10
 
+Whole app folder ratingL 9.75/10
+
 """
 
 

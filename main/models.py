@@ -113,5 +113,5 @@ class Post(db.Model):
         :params: none
         Displays useful infortmation when a class is printed
         """
-        
+
         return f"Post({self.title}, {self.date_posted}, {self.id})"

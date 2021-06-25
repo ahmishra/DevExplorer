@@ -26,10 +26,7 @@ Blogs - DevExplorer
                                 <h5 class="card-title">
                                     {{ i.title }}
                                 </h5>
-                                <h6 class="card-subtitle mb-2 text-muted">{{ i.author.username }}</h6>
-                                <p class="card-text">{{ i.content }}</p>
-                                <h6 class="card-subtitle mb-2 text-muted">{{ i.date_posted.replace(microsecond = 0) }}</h6>
-                    
+                                <h6 class="card-subtitle mb-2 text-muted">Author: {{ i.author.username }} &emsp; Posted On: {{ i.date_posted.date() }}</h6>
                             </div>
                         </div>
                     </div>
@@ -38,11 +35,6 @@ Blogs - DevExplorer
         {% else %}
             <!-- Messaging the user that no posts exists -->
             <h1 style="font-weight: bolder; text-align: center;">No Posts Yet! Be the first to post one!</h1>
-
-            <div class="text-center">
-                <br>
-                <a href="{{ url_for('new_post') }}" class="btn btn-outline-primary btn-lg">Post</a>
-            </div>
         {% endif %}
     </div>
 

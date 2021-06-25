@@ -2,8 +2,9 @@
 
 ![Python Support](https://img.shields.io/badge/Python-3.6--3.9-blue)
 ![DevExplorerVersion](https://img.shields.io/badge/DevExplorer-v2.0-brightgreen)
-![Platform](https://img.shields.io/badge/Platform-Windows(XP--10)-red)
+![Platform](https://img.shields.io/badge/Platform-Windows%2C%20Linux%2C%20Mac-informational)
 ![License](https://img.shields.io/badge/license-MIT%20License-cyan)
+![Pylint](https://img.shields.io/badge/Pylint-9.75%2F10-blueviolet)
 
 A easy, simple to use platform for developers/explorers to get their daily news feed, explore the world with our maps and post blogs to make your own little news!
 
@@ -27,9 +28,7 @@ To install DevExplorer onto your PC follow these instructions!
 `python run.py` and follow to prompts and access the website!
 
 ## System Requirements
-This program supports Windows. And for python support, it ranges from 3.6 to 3.9 older(or newer by the time you are viewing these) python version is not supported by this software
-### What about Linux and Mac?
-We are currenly working to improve on Linux and Mac system compatibality
+This program supports all of the three Windows Linux and Mac!. And for python support, it ranges from 3.6 to 3.9 older(or newer by the time you are viewing these) python version is not supported by this software
 
 
 <br>

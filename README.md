@@ -12,6 +12,7 @@ Contents
 1. [About](#about-devexplorer)
 2. [Installation](#installation)
 3. [System Requirements](#system-requirements)
+4. [Replit](#replit)
 
 ## About DevExplorer
 
@@ -30,6 +31,9 @@ To install DevExplorer onto your PC follow these instructions!
 `pip install -r requirements.txt`
 5. Finnaly, when you have installed the requirements for the project you can simply just do 
 `python run.py`, finnaly to open the web app, in your browser, go to `localhost:port` the port maybe something like 5000, 8000, 8888, 3000, or any other free port on your local machine, once you are in the web app, ENJOY!
+
+## Replit
+The replit link for this project is- https://replit.com/@AryanMishra1/DevExplorer
 
 ## System Requirements
 This program supports all of the three Windows Linux and Mac!. And for python support, it ranges from 3.6 to 3.9 older(or newer by the time you are viewing these) python version is not supported by this software

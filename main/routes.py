@@ -182,7 +182,7 @@ def send_reset_email(user):
 
     token = user.get_reset_token()
     msg = Message("DevExplorer- Reset Your Password",
-                  sender="devexplorerh1@gmail.com", recipients=[user.email])
+                  sender="umasaryan@gmail.com", recipients=[user.email])
     msg.body = f"""DevExplorer - Reset Your Password:\n
 To reset your password please visit this link {url_for('reset_pwd', token=token, _external=True)}\n
 

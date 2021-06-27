@@ -30,7 +30,7 @@
 
 	<!-- Font Awesome -->
 	<script src="https://kit.fontawesome.com/b6ea774a2a.js" crossorigin="anonymous"></script>
-
+	
 	<!-- FAVCION -->
 	<link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='icon.png') }}">
 
@@ -40,6 +40,10 @@
 
 	<!-- MARKED FOR MARKDOWN -->
 	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+	<!-- JQUERY -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -113,5 +117,9 @@
 		{% endblock content %}
 	</div>
 
+	<!-- Loader -->
+	<div class="loader-wrapper">
+		<span class="loader"><span class="loader-inner"></span></span>
+	</div>
 </body>
 </html>

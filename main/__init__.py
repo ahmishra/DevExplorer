@@ -80,17 +80,6 @@ class ScrapeNews():
 # Main App
 app = Flask(__name__)
 
-
-# Extentions
-db = SQLAlchemy(app=app)
-bcrypt = Bcrypt(app=app)
-login_manager = LoginManager(app=app)
-md = Markdown(app, output_format='html5', extensions=["fenced_code"])
-news_scraper = ScrapeNews()
-mail = Mail(app=app)
-login_manager = LoginManager(app)
-
-
 # GLOBAL APP VARIABLES
 app.config['SECRET_KEY'] = "9d12c768633d5e7154681084f45d19ed"
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///site.db"
@@ -100,6 +89,16 @@ app.config['MAIL_PORT'] = 0000
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = 'devexplorerh1@gmail.com'
 app.config['MAIL_PASSWORD'] = "explorer11thousand"
+
+
+# Extentions
+db = SQLAlchemy(app=app)
+bcrypt = Bcrypt(app=app)
+login_manager = LoginManager(app=app)
+md = Markdown(app, output_format='html5', extensions=["fenced_code"])
+news_scraper = ScrapeNews()
+mail = Mail(app=app)
+login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 

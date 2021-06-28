@@ -36,7 +36,7 @@ To install DevExplorer onto your PC follow these instructions!
 The replit link for this project is- https://replit.com/@AryanMishra1/DevExplorer
 
 ## System Requirements
-This program supports all of the three Windows Linux and Mac!. And for python support, it ranges from 3.6 to 3.9 older(or newer by the time you are viewing these) python version is not supported by this software
+This program supports all of the three Windows Linux and Mac!. And for python support, it ranges from 3.6 to 3.9 other python versions are not supported by this software
 
 
 <br>

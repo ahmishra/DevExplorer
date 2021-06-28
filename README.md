@@ -6,7 +6,7 @@
 ![License](https://img.shields.io/badge/license-MIT%20License-cyan)
 ![Pylint](https://img.shields.io/badge/Pylint-9.75%2F10-blueviolet)
 
-A easy, simple to use platform for developers/explorers to get their daily news feed, explore the world with our maps and post blogs to make your own stories, informative blogs, coding tutorials, and really anything you want!
+A easy, simple to use platform for developers/explorers to get their daily news feed, explore the world with our maps and post blogs to make your own stories, informative blogs, coding tutorials, and really anything you want! If you liked my site please consider voting it!
 
 Contents
 1. [About](#about-devexplorer)
@@ -22,7 +22,7 @@ DevExplorer is a very very simple website/program made for the Tech With Tim Tim
 - Finnaly, post blogs to share your ideas, news, or any other things with other users!
 
 ## Installation
-To install DevExplorer onto your PC follow these instructions!
+To install DevExplorer onto your PC follow these instructions! (It is also recomended that you install DevExplorer onto a Virtual Enviorment to avoid dependency errors!)
 1. First method is to use the GIT CLI `git clone https://github.com/ahmishra/DevExplorer.git`
 2. If you don't have the GIT CLI installed, you may simply download the ZIP of the project, then simply extract the ZIP file
 3. Open your Command Prompt or Terminal and change your directory to where you installed DevExplorer, for example it might look like this 

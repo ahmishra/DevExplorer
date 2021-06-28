@@ -6,7 +6,7 @@
 ![License](https://img.shields.io/badge/license-MIT%20License-cyan)
 ![Pylint](https://img.shields.io/badge/Pylint-9.75%2F10-blueviolet)
 
-A easy, simple to use platform for developers/explorers to get their daily news feed, explore the world with our maps and post blogs to make your own stories, informative blogs, coding tutorials, and really anything you want!
+A easy, simple to use platform for developers/explorers to get their daily news feed, explore the world with our maps and post blogs to make your own stories, informative blogs, coding tutorials, and really anything you want! If you liked my site please consider voting it!
 
 Contents
 1. [About](#about-devexplorer)

@@ -27,7 +27,7 @@ To install DevExplorer onto your PC follow these instructions!
 2. If you don't have the GIT CLI installed, you may simply download the ZIP of the project, then simply extract the ZIP file
 3. Open your Command Prompt or Terminal and change your directory to where you installed DevExplorer, for example it might look like this 
 `C:\Users\Username>cd DevExplorer` or if you extracted the ZIP file `C:\Users\Username>cd DevExplorer-master`
-4. Once you are in the DevExplorer folder install the requirements for the project using 
+4. Once you are in the app folder install the requirements for the project using 
 `pip install -r requirements.txt`
 5. Finnaly, when you have installed the requirements for the project you can simply just do 
 `python run.py`, finnaly to open the web app, in your browser, go to `localhost:port` the port maybe something like 5000, 8000, 8888, 3000, or any other free port on your local machine, once you are in the web app, ENJOY!

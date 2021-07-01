@@ -12,48 +12,15 @@
                 <h2 class="heading">Total results: {{ news['totalResults'] }}</h2>
             </div>
 
-            <div class="col-auto">
-                <a href="{{ url_for('devnews', cat='general') }}" class="tag-filter">
-                    <button class="btn btn-primary btn-sm">General</button>
-                </a>
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 pull-right" style="margin-bottom: 20px;">
+                <a href="{{ url_for('devnews', cat='general') }}"><button class="btn btn-primary btn-sm">General</button></a>
+                <a href="{{ url_for('devnews', cat='technology') }}"><button class="btn btn-primary btn-sm">Technology</button></a>
+                <a href="{{ url_for('devnews', cat='science') }}"><button class="btn btn-primary btn-sm">Science</button></a>
+                <a href="{{ url_for('devnews', cat='health') }}"><button class="btn btn-primary btn-sm">Health</button></a>
+                <a href="{{ url_for('devnews', cat='business') }}"><button class="btn btn-primary btn-sm">Business</button></a>
+                <a href="{{ url_for('devnews', cat='sports') }}"><button class="btn btn-primary btn-sm">Sports</button></a>
             </div>
-
-            <div class="col-auto">
-                <a href="{{ url_for('devnews', cat='business') }}" class="tag-filter">
-                    <button class="btn btn-primary btn-sm">Business</button>
-                </a>
-            </div>
-
-            <div class="col-auto">
-                <a href="{{ url_for('devnews', cat='entertainment') }}" class="tag-filter">
-                    <button class="btn btn-primary btn-sm">Entertainment</button>
-                </a>
-            </div>
-
-            <div class="col-auto">
-                <a href="{{ url_for('devnews', cat='health') }}" class="tag-filter">
-                    <button class="btn btn-primary btn-sm">Health</button>
-                </a>
-            </div>
-
-            <div class="col-auto">
-                <a href="{{ url_for('devnews', cat='science') }}" class="tag-filter">
-                    <button class="btn btn-primary btn-sm">Science</button>
-                </a>
-            </div>
-
-            <div class="col-auto">
-                <a href="{{ url_for('devnews', cat='sports') }}" class="tag-filter">
-                    <button class="btn btn-primary btn-sm">Sports</button>
-                </a>
-            </div>
-
-            <div class="col-auto">
-                <a href="{{ url_for('devnews', cat='technology') }}" class="tag-filter">
-                    <button class="btn btn-primary btn-sm">Tech</button>
-                </a>
-            </div>
-
+           
             <div class="col-auto">
                 <form method="POST">
                     <input type="text" id="query" name="query" class="form-control query" placeholder="Search News">

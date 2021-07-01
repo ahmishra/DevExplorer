@@ -265,7 +265,7 @@ iframe {
 
 
 nav {
-	background-image: linear-gradient(to left, crimson, turquoise);
+	background-image: linear-gradient(to left, white, crimson);
 	box-shadow: 1px 1px 10px black;
 	padding: 10px;
 	height: 80px;

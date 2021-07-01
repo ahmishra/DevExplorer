@@ -10,7 +10,7 @@ A easy, simple to use platform for developers/explorers to get their daily news 
 
 Contents
 1. [About](#about-devexplorer)
-2. 4. [Access Through Web](#access-through-web) 
+2. [Access Through Web](#access-through-web) 
 3. [Installation](#installation)
 4. [System Requirements](#system-requirements)
 5. [Replit](#replit)

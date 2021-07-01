@@ -268,9 +268,7 @@ nav {
 	background-image: linear-gradient(to left, white, crimson);
 	box-shadow: 1px 1px 10px black;
 	padding: 10px;
-	height: 80px;
 }
-
 
 /* Styling for title and content inside of a post */
 #title {

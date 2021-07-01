@@ -7,6 +7,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="Cache-control" content="public">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{% block title %} {% endblock title %}</title>
 
 	<!-- Bootstrap v5.0 -->
@@ -30,7 +31,7 @@
 
 	<!-- Font Awesome -->
 	<script src="https://kit.fontawesome.com/b6ea774a2a.js" crossorigin="anonymous"></script>
-	
+
 	<!-- FAVCION -->
 	<link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='icon.png') }}">
 
@@ -86,7 +87,7 @@
 						<a class="nav-link" href="{{ url_for('credits_page') }}">Credits</a>
 					</li>
 				</ul>
-				
+
 				<!-- Dark/Light Mode toggle button -->
 				<ul class="nav navbar-nav navbar-right ms-auto">
 					<li class="nav-item">
@@ -110,8 +111,8 @@
 	</div>
 	{% endfor %}
 	{% endwith %}
-	
-	
+
+
 	<!-- Content Block -->
 	<div class="content" style="zoom: 80%;">
 		{% block content %}

@@ -24,39 +24,25 @@ class RegistrationForm(FlaskForm):
     Form for the registration page
     """
 
-    username = StringField("Username", validators=[DataRequired(), Length(min=3, max=20)])
-    email = StringField("Email", validators=[DataRequired(), Length(min=3, max=1000)])
-    password = PasswordField("Password", validators=[DataRequired(), Length(min=8, max=64)])
-    password_confirm = PasswordField("Confirm Password",
-        validators=[DataRequired(), Length(min=8, max=64), EqualTo('password')])
-
+    username = StringField('Username',validators=[DataRequired(), Length(min=2, max=20)])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    password_confirm = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Register')
 
-    # Custom Validators
     def validate_username(self, username):
-
-        """
-        :params: username:to validate it
-
-        Validates the username of a specific user that it is unique
-        """
-
         user = User.query.filter_by(username=username.data).first()
         if user:
-            raise ValidationError("That username is taken, please choose another one.")
+            raise ValidationError(
+                'That username is taken. Please choose a different one.')
 
     def validate_email(self, email):
-
-
-        """
-        :params: email:to validate it
-
-        Validates the email of a specific user that it is unique
-        """
-
         user = User.query.filter_by(email=email.data).first()
         if user:
-            raise ValidationError("That email is taken, please choose another one.")
+            raise ValidationError(
+                'That email is taken. Please choose a different one.')
+
+    
 
 
 
@@ -70,10 +56,8 @@ class LoginForm(FlaskForm):
     Form for the login page
     """
 
-    username = StringField("Username", validators=[
-                           DataRequired(), Length(min=3, max=20)])
-    password = PasswordField("Password", validators=[
-                             DataRequired(), Length(min=8, max=64)])
+    username = StringField("Username", validators=[DataRequired(), Length(min=3, max=20)])
+    password = PasswordField("Password", validators=[DataRequired(), Length(min=8, max=64)])
     remember_me = BooleanField("Remember Me")
     submit = SubmitField('Login')
 

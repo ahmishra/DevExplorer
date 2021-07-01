@@ -7,6 +7,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Cache-control" content="public">
 	<title>{% block title %} {% endblock title %}</title>
 
 	<!-- Bootstrap v5.0 -->
@@ -61,7 +62,7 @@
 						<a class="nav-link" href="{{ url_for('map_render') }}">Map</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{ url_for('devnews') }}">DevNews</a>
+						<a class="nav-link" href="{{ url_for('devnews', cat='general') }}">DevNews</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="{{ url_for('list_posts') }}">Blogs</a>
@@ -115,11 +116,6 @@
 	<div class="content">
 		{% block content %}
 		{% endblock content %}
-	</div>
-
-	<!-- Loader -->
-	<div class="loader-wrapper">
-		<span class="loader"><span class="loader-inner"></span></span>
 	</div>
 </body>
 </html>

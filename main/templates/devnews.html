@@ -4,27 +4,84 @@
 
 {% block content %}
 
-    <!-- Container(Bootstrap Class) for centering elements -->
     <div class="container">
-        <!-- Making a Row(Bootstrap Class) -->
+
+        <!-- PAGINATION -->
         <div class="row">
-            <!-- News Content(with some Jinja2) -->
-            {% for i in news %}
-                <a href="{{ i[0] }}" target="_blank" class="col-4" style="text-decoration: none; color: white;">
-                    <div class="col-4">
-                        <div class="card cards" style="box-shadow: 1px 1px 30px black; border: none;">
-                            <img src="{{ i[-1] }}" alt="Image Support" style="border-radius: 25px; height: 12rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    {{ i[1] }}
-                                </h5>
-                                <p class="card-text">{{ i[2] }}</p>
+            <div class="col-auto">
+                <h2 class="heading">Total results: {{ news['totalResults'] }}</h2>
+            </div>
+
+            <div class="col-auto">
+                <a href="{{ url_for('devnews', cat='general') }}" class="tag-filter">
+                    <button class="btn btn-primary btn-sm">General</button>
+                </a>
+            </div>
+
+            <div class="col-auto">
+                <a href="{{ url_for('devnews', cat='business') }}" class="tag-filter">
+                    <button class="btn btn-primary btn-sm">Business</button>
+                </a>
+            </div>
+
+            <div class="col-auto">
+                <a href="{{ url_for('devnews', cat='entertainment') }}" class="tag-filter">
+                    <button class="btn btn-primary btn-sm">Entertainment</button>
+                </a>
+            </div>
+
+            <div class="col-auto">
+                <a href="{{ url_for('devnews', cat='health') }}" class="tag-filter">
+                    <button class="btn btn-primary btn-sm">Health</button>
+                </a>
+            </div>
+
+            <div class="col-auto">
+                <a href="{{ url_for('devnews', cat='science') }}" class="tag-filter">
+                    <button class="btn btn-primary btn-sm">Science</button>
+                </a>
+            </div>
+
+            <div class="col-auto">
+                <a href="{{ url_for('devnews', cat='sports') }}" class="tag-filter">
+                    <button class="btn btn-primary btn-sm">Sports</button>n=
+                </a>
+            </div>
+
+            <div class="col-auto">
+                <a href="{{ url_for('devnews', cat='technology') }}" class="tag-filter">
+                    <button class="btn btn-primary btn-sm">Tech</button>
+                </a>
+            </div>
+
+            <div class="col-auto">
+                <form method="POST">
+                    <input type="text" id="query" name="query" class="form-control query" placeholder="Search News">
+                    <button type="submit" class="btn btn-outline-primary query-btn">Search</button>
+                </form>
+            </div>
+        </div>
+
+        <br><br><br>
+
+
+        <!-- NEWS -->
+        <div class="row">
+                {% for i in news['articles'] %}
+                    <a href="{{ i['url'] }}" class="col-4" style="text-decoration: none; color: white;" target="_blank">
+                        <div class="col-4">
+                            <div class="card cards" style="width: 25rem;">
+                                <img src="{{ i['urlToImage'] }}" class="card-img-top" alt="Image Support" style="border-radius: 25px; height: 12rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ i['title'] }}</h5>
+                                    <p class="card-text">{{ i['description'] }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-            {% endfor %}
+                    </a>
+                {% endfor %}
         </div>
+
     </div>
 
 {% endblock content %}

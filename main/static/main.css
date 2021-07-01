@@ -167,11 +167,42 @@ body {
 }
 
 
+/* Input styling for news search */
+.query {
+  display: block;
+  float: left;
+  height: 40px;
+  width: 250px;
+}
+
+
+/* Query Button */
+.query-btn {
+  display: block;
+  float: left;
+  height: 40px;
+  margin: -1px -2px -2px;
+  width: 70px;
+  margin-left: 10px;
+}
+
+
 /* Styling for user authentication cards */
 .auth-form{
 	padding: 25px;
 	color: black;
 	border-radius: 10px;
+}
+
+
+/* Styling for filters */
+.tag-filter {
+  text-decoration: none; 
+  color: white;
+}
+
+.btn-sm {
+  height: 40px;
 }
 
 
@@ -234,7 +265,7 @@ iframe {
 
 
 nav {
-	background-color: #212121;
+	background-image: linear-gradient(to left, crimson, turquoise);
 	box-shadow: 1px 1px 10px black;
 	padding: 10px;
 	height: 80px;
@@ -258,83 +289,18 @@ nav {
 }
 
 
-/* LOADER STYLES */
-.loader-wrapper {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-image: linear-gradient(to bottom  right, crimson, turquoise, white);
-  display:flex;
-  justify-content: center;
-  align-items: center;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
 }
 
-
-.loader {
-  display: inline-block;
-  width: 100px;
-  height: 100px;
+::-webkit-scrollbar-thumb {
+  background: rgba(90, 90, 90, 0.5);
   border-radius: 20px;
-  position: relative;
-  border: 4px solid #Fff;
-  animation: loader 2s infinite ease;
 }
 
-
-.loader-inner {
-  vertical-align: top;
-  display: inline-block;
-  width: 100%;
-  background-color: #fff;
-  animation: loader-inner 2s infinite ease-in;
-}
-
-
-
-@keyframes loader {
-  0% {
-    transform: rotate(0deg);
-  }
-  
-  25% {
-    transform: rotate(180deg);
-  }
-  
-  50% {
-    transform: rotate(180deg);
-  }
-  
-  75% {
-    transform: rotate(360deg);
-  }
-  
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes loader-inner {
-  0% {
-    height: 0%;
-  }
-  
-  25% {
-    height: 0%;
-  }
-  
-  50% {
-    height: 100%;
-  }
-  
-  75% {
-    height: 100%;
-  }
-  
-  100% {
-    height: 0%;
-  }
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
 }
 
 /* END */

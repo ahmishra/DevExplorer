@@ -12,69 +12,8 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flaskext.markdown import Markdown
 from flask_mail import Mail
-
-# Tech Crunch Scraper
-
-import bs4
-import requests
-
-
-class ScrapeNews():
-
-    """
-    Class that will be used in routes.py to get the scraped news info
-    """
-
-    def scrape(self):
-
-        """
-        :params: none
-
-        Main news scraper
-        """
-
-        response = requests.get("https://techcrunch.com/")
-
-        soup = bs4.BeautifulSoup(response.text, "html.parser")
-
-        article_titles, article_contents, article_hrefs, article_images = [], [], [], []
-
-        for tag in soup.findAll("div",{"class": "post-block post-block--image post-block--unread"}):
-
-            tag_header = tag.find("a", {"class": "post-block__title__link"})
-            tag_content = tag.find("div", {"class": "post-block__content"})
-            tag_image = tag.find("figure", {"class": "post-block__media"})
-
-            article_title = tag_header.get_text().strip()
-            article_href = tag_header["href"]
-            article_content = tag_content.get_text().strip()
-            article_image = tag_image.img['src']
-
-            article_titles.append(article_title)
-            article_contents.append(article_content)
-            article_hrefs.append(article_href)
-            article_images.append(article_image)
-
-        return zip(article_hrefs, article_titles, article_contents, article_images)
-
-
-    def return_news(self):
-
-        """
-        :params:none
-
-        Returns the news in parseable format
-        """
-
-        scraped_data = self.scrape()
-        news = []
-
-        for a_news in scraped_data:
-            news.append(a_news)
-
-        return news
-
-
+from newsapi import NewsApiClient
+import newsapi
 
 
 # Main App
@@ -96,8 +35,8 @@ db = SQLAlchemy(app=app)
 bcrypt = Bcrypt(app=app)
 login_manager = LoginManager(app=app)
 md = Markdown(app, output_format='html5', extensions=["fenced_code"])
-news_scraper = ScrapeNews()
 mail = Mail(app=app)
+newsapi = newsapi.NewsApiClient(api_key="eb222d46c8b8446987ecccd93d7edf8b")
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'

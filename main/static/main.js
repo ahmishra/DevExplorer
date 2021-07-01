@@ -52,11 +52,3 @@ $(window).on("load", function () {
 
 // END
 
-
-
-// Loading Animation
-$(window).on("load", function () {
-    $(".loader-wrapper").fadeOut(1000);
-});
-
-// END

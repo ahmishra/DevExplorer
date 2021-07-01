@@ -13,7 +13,7 @@ from flask import render_template, redirect, url_for, flash, abort, request
 from flask_mail import Message
 from main.models import User, Post
 from main.forms import RegistrationForm, LoginForm, NewPostForm, ResetPWDForm, RequestResetPWDForm
-from main import app, bcrypt, db, news_scraper, mail
+from main import app, bcrypt, db, newsapi, mail
 
 
 
@@ -199,8 +199,8 @@ If you didn't make this request simply, ignore or delete this email!
 
 
 # DevNews
-@app.route("/devnews")
-def devnews():
+@app.route("/devnews/<cat>", methods=["GET", "POST"])
+def devnews(cat="general"):
 
     """
     :params: none
@@ -208,7 +208,13 @@ def devnews():
 
     """
 
-    news=news_scraper.return_news()
+    news = newsapi.get_top_headlines(page_size=100, language="en", category=cat)
+
+    if request.method == "POST":
+        query = request.form['query']
+        if query is not None:
+            news = news = newsapi.get_top_headlines(q=str(query), page_size=100)
+
     return render_template("devnews.html", news=news)
 
 

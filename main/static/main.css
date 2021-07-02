@@ -213,7 +213,7 @@ body {
 	transition: 0.75s ease;
 }
 .bg-light.scrolled {
-	background: beige !important;
+	background: white !important;
 	box-shadow: 1px 1px 25px black;
 }
 .bg-dark {

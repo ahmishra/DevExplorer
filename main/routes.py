@@ -8,11 +8,13 @@ PYLINT: 9.83/10
 
 
 # Imports
+import os
+import secrets
 from flask_login.utils import login_required, login_user, current_user, logout_user
 from flask import render_template, redirect, url_for, flash, abort, request
 from flask_mail import Message
 from main.models import User, Post
-from main.forms import RegistrationForm, LoginForm, NewPostForm, ResetPWDForm, RequestResetPWDForm
+from main.forms import RegistrationForm, LoginForm, NewPostForm, ResetPWDForm, RequestResetPWDForm, UpdateAccountForm
 from main import app, bcrypt, db, newsapi, mail
 
 
@@ -196,6 +198,44 @@ If you didn't make this request simply, ignore or delete this email!
 
 #### Main Content ####
 
+# User Account Page
+@app.route("/account", methods=["GET", "POST"])
+@login_required
+def account():
+    form = UpdateAccountForm()
+
+    if form.validate_on_submit():
+        if form.picture.data:
+            hex_val = secrets.token_hex(8)
+            f_ext, _ = os.path.splitext(form.picture.data.filename)
+            picture_path = os.path.join(app.root_path, 'static/profile_pics', (hex_val + f_ext))
+            form.picture.data.save(picture_path)
+            current_user.profile_picture = (hex_val + f_ext)
+
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        current_user.about_user = form.description.data
+        db.session.commit()
+        flash(f"You account's email was updated to {current_user.email} and username was updated to {current_user.username}", "info")
+        return redirect(url_for('account'))
+    elif request.method == "GET":
+        form.username.data = current_user.username
+        form.email.data = current_user.email
+        form.description.data = current_user.about_user
+
+    profile_picture=url_for('static', filename=f'profile_pics/{current_user.profile_picture}')
+    return render_template('account.html', profile_picture=profile_picture, form=form)
+
+
+
+# User account page (if the user is not the same)
+@app.route("/user/<string:username>")
+def user_info(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    profile_picture = url_for('static', filename=f'profile_pics/{user.profile_picture}')
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.filter_by(author=user).order_by(Post.date_posted.desc()).paginate(page=page, per_page=6)
+    return render_template('user_info.html', profile_picture=profile_picture, posts=posts, user=user)
 
 
 # DevNews

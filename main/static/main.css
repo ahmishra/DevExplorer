@@ -207,6 +207,25 @@ body {
 }
 
 
+/* Styling for nav(fade in and out when scroll) */
+.bg-light {
+	background: transparent !important;
+	transition: 0.75s ease;
+}
+.bg-light.scrolled {
+	background: beige !important;
+	box-shadow: 1px 1px 25px black;
+}
+.bg-dark {
+	background: transparent !important;
+	transition: 0.75s ease;
+}
+.bg-dark.scrolled {
+	background: #212121 !important;
+	box-shadow: 1px 1px 25px black;
+}
+
+
 /* Bounce Animation */
 @keyframes bounce{
     from { transform: translate3d(0, 0, 0);}
@@ -264,12 +283,6 @@ iframe {
 	margin-top: 20px;
 }
 
-
-nav {
-	background-image: linear-gradient(to left, orange, crimson);
-	box-shadow: 1px 1px 10px black;
-	padding: 10px;
-}
 
 /* Styling for title and content inside of a post */
 #title {

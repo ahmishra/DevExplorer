@@ -71,5 +71,5 @@ $(window).on("load", function () {
 
 // Fade in nav when scroll
 $(window).scroll(function(){
-    $('nav').toggleClass('scrolled', $(this).scrollTop() > 200);
+    $('nav').toggleClass('scrolled', $(this).scrollTop() > 100);
 });

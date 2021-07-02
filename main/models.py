@@ -40,6 +40,8 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(1000), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
+    profile_picture = db.Column(db.String(1000), nullable=False, default="default.png")
+    about_user = db.Column(db.Text, nullable=False, default="This user likes to keep themselves secret, apparently...")
     post = db.relationship('Post', backref='author', lazy=True)
 
 

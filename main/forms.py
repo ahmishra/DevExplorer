@@ -10,7 +10,9 @@ from flask_wtf import FlaskForm
 from wtforms.fields.core import BooleanField, StringField
 from wtforms.fields.simple import PasswordField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
+from flask_wtf.file import FileField, FileAllowed
 from main.models import User
+from flask_login import current_user
 
 
 
@@ -31,20 +33,30 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Register')
 
     def validate_username(self, username):
+
+        """
+        :params: user username
+        validates user's name
+        """
+
         user = User.query.filter_by(username=username.data).first()
         if user:
             raise ValidationError(
                 'That username is taken. Please choose a different one.')
 
     def validate_email(self, email):
+
+        """
+        :params: user username
+        validates user's name
+        """
+
         user = User.query.filter_by(email=email.data).first()
         if user:
             raise ValidationError(
                 'That email is taken. Please choose a different one.')
 
-    
-
-
+  
 
 # Login Form
 class LoginForm(FlaskForm):
@@ -118,9 +130,50 @@ class ResetPWDForm(FlaskForm):
     Form for resetting password
     """
 
-    password = PasswordField("Password", validators=[
-                             DataRequired(), Length(min=8, max=64)])
+    password = PasswordField("Password", validators=[DataRequired(), Length(min=8, max=64)])
     password_confirm = PasswordField("Confirm Password", validators=[
         DataRequired(), Length(min=8, max=64), EqualTo('password')])
 
     submit = SubmitField("Reset Password")
+
+
+
+# Update Account Form
+class UpdateAccountForm(FlaskForm):
+
+    """
+    :params: none
+    :inherits:FlaskForm, wtforms
+
+    Form for the registration page
+    """
+
+    username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    description = TextAreaField('Description', validators=[DataRequired(), Length(3)])
+    picture = FileField('Profile Picture', validators=[FileAllowed(['jpg', 'png', 'gif'])])
+    submit = SubmitField('Update')
+
+    def validate_username(self, username):
+        """
+        :params: user username
+        validates user's name
+        """
+
+        if username.data != current_user.username:
+            user = User.query.filter_by(username=username.data).first()
+            if user:
+                raise ValidationError(
+                    'That username is taken. Please choose a different one.')
+
+    def validate_email(self, email):
+        """
+        :params: user username
+        validates user's name
+        """
+
+        if email.data != current_user.email:
+            user = User.query.filter_by(email=email.data).first()
+            if user:
+                raise ValidationError(
+                    'That email is taken. Please choose a different one.')

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}
+{{ user.username }} - Account - DevExplorer
+{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <div class="jumbotron"
+        style="background-color: white; box-shadow: 1px 1px 100px black; padding: 40px; border-radius: 20px; color: black; height: 20rem;">
+        <img src="{{ profile_picture }}" alt="DP" width="256" height="256" style="border-radius: 50%; float: left;">
+
+        <div class="media-content" style="margin-left: 280px; margin-top: 20px;">
+            <h1 class="heading" style="margin-top: 0px;">{{ user.username }}</h1>
+            <p class="text-secondary">{{ user.email }}</p>
+            <p>{{ user.about_user }}</p>
+        </div>
+    </div>
+    
+    <br><br><br>
+
+    <h3><b>Posts made by {{ user.username }}:</b></h3>
+
+    <br><br><br>
+
+    <div class="row">
+
+        {% if posts.items != [] %}
+        {% for i in posts.items %}
+        <!-- Displaying the posts if exists -->
+        <a href="{{ url_for('post_detail', primary_key=i.id) }}" class="col-4" style="text-decoration: none; color: white;">
+            <div class="col-4">
+                <div class="card cards" style="box-shadow: 1px 1px 10px black; border: none;">
+                    <img src="{{ i.thumbnail }}" alt="Image Support" style="border-radius: 25px; height: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-weight: 600;">
+                            {{ i.title }}
+                        </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            Author: {{ i.author.username }} &emsp; Posted On: {{ i.date_posted.date() }}
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+        {% else %}
+        <!-- Messaging the user that no posts exists -->
+        <h1 style="font-weight: bolder; text-align: center;">No posts made by {{ user.username }}!</h1>
+        {% endif %}
+
+    </div>
+
+    <!-- Pagination -->
+    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+    {% if page_num %}
+    {% if posts.page == page_num %}
+    <a class="btn btn-info" style="margin: 5px;" href="{{ url_for('list_posts', page=page_num) }}">{{ page_num }}</a>
+    {% else %}
+    <a class="btn btn-outline-info" style="margin: 5px;" href="{{ url_for('list_posts', page=page_num) }}">{{ page_num
+        }}</a>
+    {% endif %}
+    
+    {% else %}
+    ...
+    {% endif %}
+    {% endfor %}
+
+<br><br><br>
+
+{% endblock content %}

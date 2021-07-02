@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block title %}
+{{ current_user.username }} - Account - DevExplorer
+{% endblock title %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="jumbotron" style="background-color: white; box-shadow: 10px 10px 30px black; padding: 40px; border-radius: 10px; color: black; height: 20rem;">
+            <img src="{{ profile_picture }}" alt="DP" width="256" height="256" style="border-radius: 50%; float: left;">
+
+            <div class="media-content" style="margin-left: 280px; margin-top: 20px;">
+                <h1 class="heading" style="margin-top: 0px;">{{ current_user.username }}</h1>
+                <p class="text-secondary">{{ current_user.email }}</p>
+                <p>{{ current_user.about_user }}</p>
+            </div>
+        </div>
+
+        <br><br>
+
+        <div class="jumbotron"
+            style="background-color: white; box-shadow: 10px 10px 30px black; color: black; padding: 40px; border-radius: 10px; height: 100%;">
+        
+            <!-- UPDATE FORM -->
+            <form method="POST" action="" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group">
+                    
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                {{ form.username.label(class="form-control-label") }}
+                                {% if form.username.errors %}
+                                {{ form.username(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.username.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.username(class="form-control form-control-lg") }}
+                                {% endif %}
+                            
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                {{ form.email.label(class="form-control-label") }}
+                                {% if form.email.errors %}
+                                {{ form.email(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.email(class="form-control form-control-lg") }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-5" style="margin-top: 20px; margin-bottom: 20px;">
+                            <div class="form-group">
+                                {{ form.picture.label }}
+                                {{ form.picture(class="form-control-file") }}
+                                {% if form.picture.errors %}
+                                {% for error in form.picture.errors %}
+                                <span class="text-danger">{{ error }}</span><br>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        {{ form.description.label(class="form-control-label") }}
+                        {% if form.description.errors %}
+                        {{ form.description(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.description.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.description(class="form-control form-control-lg") }}
+                        {% endif %}
+                
+                    </div>
+
+                    <br>
+
+                    <div class="form-group" style="color: white;">
+                        {{ form.submit(class="btn btn-outline-primary") }}
+                    </div>
+                </fieldset>
+            </form>
+        
+        </div>
+
+    </div>
+
+    <br><br><br>
+
+{% endblock content %}

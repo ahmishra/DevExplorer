@@ -4,12 +4,28 @@ const darkModeToggle = document.querySelector("#dark-mode-toggle");
 
 const enableDarkMode = () => {
     document.body.classList.add("darkmode");
+    document.getElementById("nav").classList.add("bg-dark");
+    document.getElementById("nav").classList.add("navbar-dark");
+
+
     document.body.classList.remove("lightmode");
+    document.getElementById("nav").classList.add("navbar-light");
+    document.getElementById("nav").classList.remove("bg-light");
+
+
     localStorage.setItem("darkMode", 'enabled');
 };
 const disableDarkMode = () => {
     document.body.classList.add("lightmode");
+    document.getElementById("nav").classList.add("bg-light");
+    document.getElementById("nav").classList.add("navbar-light");
+
+
     document.body.classList.remove("darkmode");
+    document.getElementById("nav").classList.remove("navbar-dark");
+    document.getElementById("nav").classList.remove("bg-dark");
+
+    
     localStorage.setItem("darkMode", 'disabled');
 };
 
@@ -52,3 +68,8 @@ $(window).on("load", function () {
 
 // END
 
+
+// Fade in nav when scroll
+$(window).scroll(function(){
+    $('nav').toggleClass('scrolled', $(this).scrollTop() > 200);
+});

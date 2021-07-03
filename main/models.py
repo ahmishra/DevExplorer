@@ -99,11 +99,7 @@ class Post(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
-    thumbnail = db.Column(
-        db.String(1000),
-        nullable=False,
-        default="https://designshack.net/wp-content/uploads/placeholder-image.png"
-    )
+    thumbnail = db.Column(db.String(500), nullable=True)
 
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     content = db.Column(db.Text, nullable=False)

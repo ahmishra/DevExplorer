@@ -226,6 +226,16 @@ body {
 }
 
 
+/* Class to add elipsis to text */
+.elipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 11;
+	-webkit-box-orient: vertical;
+}
+
+
 /* Bounce Animation */
 @keyframes bounce{
     from { transform: translate3d(0, 0, 0);}

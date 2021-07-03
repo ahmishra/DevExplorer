@@ -6,14 +6,12 @@ PYLINT: 10/10
 
 
 # Imports
-from flask_wtf import FlaskForm
+from flask_wtf import FlaskForm, file
 from wtforms.fields.core import BooleanField, StringField
 from wtforms.fields.simple import PasswordField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
-from flask_wtf.file import FileField, FileAllowed
-from main.models import User
 from flask_login import current_user
-
+from main.models import User
 
 
 # Form To Make The User Registered
@@ -29,7 +27,8 @@ class RegistrationForm(FlaskForm):
     username = StringField('Username',validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
-    password_confirm = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    password_confirm = PasswordField('Confirm Password',
+        validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Register')
 
     def validate_username(self, username):
@@ -56,7 +55,7 @@ class RegistrationForm(FlaskForm):
             raise ValidationError(
                 'That email is taken. Please choose a different one.')
 
-  
+
 
 # Login Form
 class LoginForm(FlaskForm):
@@ -152,7 +151,8 @@ class UpdateAccountForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email', validators=[DataRequired(), Email()])
     description = TextAreaField('Description', validators=[DataRequired(), Length(3)])
-    picture = FileField('Profile Picture', validators=[FileAllowed(['jpg', 'png', 'gif'])])
+    picture = file.FileField('Profile Picture',
+        validators=[file.FileAllowed(['jpg', 'png', 'gif'])])
     submit = SubmitField('Update')
 
     def validate_username(self, username):

@@ -28,8 +28,8 @@
         <!-- Displaying the post's content -->
         <h2 style="font-weight: 700;">{{ post.title }}</h2>
         <div class="card-body" style="margin: 0; padding: 0;">
-            <a href="" style="text-decoration: none; color: orangered; font-weight: bolder;">
-                <img src="{{ url_for('static', filename='profile_pics/' ~ post.author.profile_picture) }}" alt="DP" width="32"
+            <a href="{{ url_for('user_info', username=post.author.username) }}" style="text-decoration: none; color: orangered; font-weight: bolder;">
+                <img src="{{ url_for('static', filename='profile_pics/' ~ post.author.profile_picture) }}" class="rounded-circle" alt="DP" width="32"
                 height="32">&ensp;{{ post.author.username }}
             </a>
         </div>
@@ -41,7 +41,7 @@
         <br>
 
         <p>{{ post.content|markdown }}</p>
-        
+
     </div>
 
     <br><br>

@@ -23,7 +23,7 @@ Blogs - DevExplorer
                     <div class="col-auto">
                         <div class="card cards" style="box-shadow: 1px 1px 30px black; border: none; width: 612px;">
                             <div class="card-body" style="margin: 0; padding: 0;">
-                                <img src="{{ url_for('static', filename='profile_pics/' ~ i.author.profile_picture) }}" alt="DP" width="32"
+                                <img src="{{ url_for('static', filename='profile_pics/' ~ i.author.profile_picture) }}" class="rounded-circle" alt="DP" width="32"
                                     height="32">&ensp;{{ i.author.username }}
                             </div>
 
@@ -48,13 +48,13 @@ Blogs - DevExplorer
                                 <img src="{{ url_for('static', filename='profile_pics/' ~ i.author.profile_picture) }}" alt="DP"
                                     width="32" height="32">&ensp;{{ i.author.username }}
                             </div>
-                
+
                             <br>
-                
+
                             <span class="text-muted" style="margin-bottom: 10px;">Posted On: {{ i.date_posted.date() }}</span>
-                
+
                             <br>
-                
+
                             <h5 class="card-title" style="font-weight: 600;">
                                 {{ i.title }}
                             </h5>

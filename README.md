@@ -1,7 +1,7 @@
 # DevExplorer
 
 ![Python Support](https://img.shields.io/badge/Python-3.6--3.9-blue)
-![DevExplorerVersion](https://img.shields.io/badge/DevExplorer-v2.0-brightgreen)
+![DevExplorerVersion](https://img.shields.io/badge/DevExplorer-v3.0-important)
 ![Platform](https://img.shields.io/badge/Platform-Windows%2C%20Linux%2C%20Mac-informational)
 ![License](https://img.shields.io/badge/license-MIT%20License-cyan)
 ![Pylint](https://img.shields.io/badge/Pylint%20-9.96-blueviolet)

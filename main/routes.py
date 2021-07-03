@@ -14,7 +14,9 @@ from flask_login.utils import login_required, login_user, current_user, logout_u
 from flask import render_template, redirect, url_for, flash, abort, request
 from flask_mail import Message
 from main.models import User, Post
-from main.forms import RegistrationForm, LoginForm, NewPostForm, ResetPWDForm, RequestResetPWDForm, UpdateAccountForm
+from main.forms import (RegistrationForm, LoginForm,
+                        NewPostForm, ResetPWDForm,
+                        RequestResetPWDForm, UpdateAccountForm)
 from main import app, bcrypt, db, newsapi, mail
 
 
@@ -202,6 +204,12 @@ If you didn't make this request simply, ignore or delete this email!
 @app.route("/account", methods=["GET", "POST"])
 @login_required
 def account():
+
+    """
+    :params:none
+    Page where user can update their info
+    """
+
     form = UpdateAccountForm()
 
     if form.validate_on_submit():
@@ -216,7 +224,8 @@ def account():
         current_user.email = form.email.data
         current_user.about_user = form.description.data
         db.session.commit()
-        flash(f"You account's email was updated to {current_user.email} and username was updated to {current_user.username}", "info")
+        flash(f"You account's email was updated to {current_user.email} and\
+             username was updated to {current_user.username}", "info")
         return redirect(url_for('account'))
     elif request.method == "GET":
         form.username.data = current_user.username
@@ -231,11 +240,22 @@ def account():
 # User account page (if the user is not the same)
 @app.route("/user/<string:username>")
 def user_info(username):
+
+    """
+    :params: username
+    Returns information about the user
+    """
+
     user = User.query.filter_by(username=username).first_or_404()
     profile_picture = url_for('static', filename=f'profile_pics/{user.profile_picture}')
     page = request.args.get('page', 1, type=int)
-    posts = Post.query.filter_by(author=user).order_by(Post.date_posted.desc()).paginate(page=page, per_page=6)
-    return render_template('user_info.html', profile_picture=profile_picture, posts=posts, user=user)
+    posts = Post.query.filter_by(author=user).order_by(Post.date_posted.desc())
+    posts = posts.paginate(page=page, per_page=6)
+    return render_template('user_info.html',
+                            profile_picture=profile_picture,
+                            posts=posts,
+                            user=user)
+
 
 
 # DevNews

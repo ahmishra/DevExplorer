@@ -5,7 +5,7 @@ Blogs - DevExplorer
 
 {% block content %}
 <div class="container">
-    <div class="row">
+    <div class="row no-gutters">
         <div class="text-center">
             <a href="{{ url_for('new_post') }}">
                 <button class="btn btn-primary btn-primary btn-lg rainbow-button">Post A New Blog</button>
@@ -18,21 +18,54 @@ Blogs - DevExplorer
         {% if posts.items != [] %}
             {% for i in posts.items %}
                 <!-- Displaying the posts if exists -->
-                <a href="{{ url_for('post_detail', primary_key=i.id) }}" class="col-4" style="text-decoration: none; color: white;">
-                    <div class="col-4">
-                        <div class="card cards" style="box-shadow: 1px 1px 30px black; border: none;">
-                            <img src="{{ i.thumbnail }}" alt="Image Support" style="border-radius: 25px; height: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title" style="font-weight: 600;">
-                                    {{ i.title }}
-                                </h5>
-                                <h6 class="card-subtitle mb-2 text-muted">
-                                    Author: {{ i.author.username }} &emsp; Posted On: {{ i.date_posted.date() }}
-                                </h6>
+                {% if i.thumbnail %}
+                <a href="{{ url_for('post_detail', primary_key=i.id) }}" class="col-auto" style="text-decoration: none; color: white;">
+                    <div class="col-auto">
+                        <div class="card cards" style="box-shadow: 1px 1px 30px black; border: none; width: 612px; height: 18rem;">
+                            <div class="card-body" style="margin: 0; padding: 0;">
+                                <img src="{{ url_for('static', filename='profile_pics/' ~ i.author.profile_picture) }}" alt="DP" width="32"
+                                    height="32">&ensp;{{ i.author.username }}
                             </div>
+
+                            <br>
+
+                            <span class="text-muted" style="margin-bottom: 10px;">Posted On: {{ i.date_posted.date() }}</span>
+                            <img src="{{ i.thumbnail }}" alt="Image Support" style="border-radius: 25px;">
+
+                            <br>
+
+                            <h5 class="card-title" style="font-weight: 600;">
+                                {{ i.title }}
+                            </h5>
                         </div>
                     </div>
                 </a>
+                {% else %}
+                <a href="{{ url_for('post_detail', primary_key=i.id) }}" class="col-auto" style="text-decoration: none; color: white;">
+                    <div class="col-auto">
+                        <div class="card cards" style="box-shadow: 1px 1px 30px black; border: none; width: 612px; height: 18rem;">
+                            <div class="card-body" style="margin: 0; padding: 0;">
+                                <img src="{{ url_for('static', filename='profile_pics/' ~ i.author.profile_picture) }}" alt="DP"
+                                    width="32" height="32">&ensp;{{ i.author.username }}
+                            </div>
+                
+                            <br>
+                
+                            <span class="text-muted" style="margin-bottom: 10px;">Posted On: {{ i.date_posted.date() }}</span>
+                
+                            <br>
+                
+                            <h5 class="card-title" style="font-weight: 600;">
+                                {{ i.title }}
+                            </h5>
+
+                            <p class="elipsis" style="height: 17rem;">
+                                {{ i.content }}
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                {% endif %}
             {% endfor %}
         {% else %}
             <!-- Messaging the user that no posts exists -->

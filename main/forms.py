@@ -87,7 +87,8 @@ class NewPostForm(FlaskForm):
 
     title = StringField('Title', validators=[DataRequired(), Length(3)])
     content = TextAreaField('Content', validators=[DataRequired(), Length(3)])
-    thumbnail = StringField('Thumbnail(Image URL)', validators=[DataRequired(), Length(3)])
+    thumbnail = StringField('Thumbnail Optional (Image URL)', render_kw={
+                            "placeholder": "For eg. https://picsum.photos/536/354"})
     submit = SubmitField('Post')
 
 

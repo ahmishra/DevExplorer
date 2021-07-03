@@ -21,7 +21,7 @@ Blogs - DevExplorer
                 {% if i.thumbnail %}
                 <a href="{{ url_for('post_detail', primary_key=i.id) }}" class="col-auto" style="text-decoration: none; color: white;">
                     <div class="col-auto">
-                        <div class="card cards" style="box-shadow: 1px 1px 30px black; border: none; width: 612px; height: 18rem;">
+                        <div class="card cards" style="box-shadow: 1px 1px 30px black; border: none; width: 612px;">
                             <div class="card-body" style="margin: 0; padding: 0;">
                                 <img src="{{ url_for('static', filename='profile_pics/' ~ i.author.profile_picture) }}" alt="DP" width="32"
                                     height="32">&ensp;{{ i.author.username }}
@@ -30,7 +30,7 @@ Blogs - DevExplorer
                             <br>
 
                             <span class="text-muted" style="margin-bottom: 10px;">Posted On: {{ i.date_posted.date() }}</span>
-                            <img src="{{ i.thumbnail }}" alt="Image Support" style="border-radius: 25px;">
+                            <img src="{{ i.thumbnail }}" alt="Image Support" style="border-radius: 25px; height: 18rem;">
 
                             <br>
 
@@ -43,7 +43,7 @@ Blogs - DevExplorer
                 {% else %}
                 <a href="{{ url_for('post_detail', primary_key=i.id) }}" class="col-auto" style="text-decoration: none; color: white;">
                     <div class="col-auto">
-                        <div class="card cards" style="box-shadow: 1px 1px 30px black; border: none; width: 612px; height: 18rem;">
+                        <div class="card cards" style="box-shadow: 1px 1px 30px black; border: none; width: 612px;">
                             <div class="card-body" style="margin: 0; padding: 0;">
                                 <img src="{{ url_for('static', filename='profile_pics/' ~ i.author.profile_picture) }}" alt="DP"
                                     width="32" height="32">&ensp;{{ i.author.username }}

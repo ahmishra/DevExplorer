@@ -4,7 +4,7 @@
 ![DevExplorerVersion](https://img.shields.io/badge/DevExplorer-v2.0-brightgreen)
 ![Platform](https://img.shields.io/badge/Platform-Windows%2C%20Linux%2C%20Mac-informational)
 ![License](https://img.shields.io/badge/license-MIT%20License-cyan)
-![Pylint](https://img.shields.io/badge/Pylint-9.75%2F10-blueviolet)
+![Pylint](https://img.shields.io/badge/Pylint%20-9.96-blueviolet)
 
 A easy, simple to use platform for developers/explorers to get their daily news feed, explore the world with our maps and post blogs to make your own stories, informative blogs, coding tutorials, and really anything you want! If you liked my site please consider voting it!
 

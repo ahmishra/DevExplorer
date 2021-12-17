@@ -23,9 +23,6 @@ DevExplorer is a very very simple website/program made for the Tech With Tim Tim
 - Get your daily developer news right in our devnews tab
 - Finnaly, post blogs to share your ideas, news, or any other things with other users!
 
-## Access Through Web
-Accessing this app through the app is way easier than manually installing it, if you prefer to access the site through the web please follow this link, https://hamburgers.pythonanywhere.com/
-
 ## Installation
 To install DevExplorer onto your PC follow these instructions! (It is also recomended that you install DevExplorer onto a Virtual Enviorment to avoid dependency errors!)
 1. First method is to use the GIT CLI `git clone https://github.com/ahmishra/DevExplorer.git`
